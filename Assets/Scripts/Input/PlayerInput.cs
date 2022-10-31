@@ -24,17 +24,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""Locomotion"",
+            ""name"": ""_locomotion"",
             ""id"": ""a6a330fa-d8e6-4d6a-bb4d-ff701155a085"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
-                    ""type"": ""PassThrough"",
+                    ""name"": ""_movement"",
+                    ""type"": ""Value"",
                     ""id"": ""624e0834-23e0-4eab-89ab-4789ddd688de"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -42,10 +42,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""name"": ""Keyboard"",
                     ""id"": ""f9b145ad-dd1e-4914-af8a-70a6dfc5f518"",
                     ""path"": ""2DVector"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -56,7 +56,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -67,7 +67,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -78,7 +78,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -89,7 +89,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -100,51 +100,51 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""Up"",
                     ""id"": ""8db34acb-b0e7-4bb7-aca7-dff717985370"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
+                    ""name"": ""Down"",
                     ""id"": ""3ac4925b-9e40-46c4-a858-8f623a8f83a2"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""5cc27500-3d64-48d9-be20-e5c27cf341fa"",
+                    ""name"": ""Left"",
+                    ""id"": ""2ee49931-a2ee-4b63-bf09-43efd55af88c"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
+                    ""groups"": """",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""bbccf646-dda0-41ee-a56e-1a44637c0465"",
+                    ""name"": ""Right"",
+                    ""id"": ""5931066c-490d-4a6e-970a-cebea6eb7215"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
+                    ""groups"": """",
+                    ""action"": ""_movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -168,7 +168,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""bindingGroup"": ""Gamepad"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<Gamepad>"",
+                    ""devicePath"": ""<XInputController>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -176,9 +176,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Locomotion
-        m_Locomotion = asset.FindActionMap("Locomotion", throwIfNotFound: true);
-        m_Locomotion_Movement = m_Locomotion.FindAction("Movement", throwIfNotFound: true);
+        // _locomotion
+        m__locomotion = asset.FindActionMap("_locomotion", throwIfNotFound: true);
+        m__locomotion__movement = m__locomotion.FindAction("_movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -235,38 +235,38 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Locomotion
-    private readonly InputActionMap m_Locomotion;
-    private ILocomotionActions m_LocomotionActionsCallbackInterface;
-    private readonly InputAction m_Locomotion_Movement;
-    public struct LocomotionActions
+    // _locomotion
+    private readonly InputActionMap m__locomotion;
+    private I_locomotionActions m__locomotionActionsCallbackInterface;
+    private readonly InputAction m__locomotion__movement;
+    public struct _locomotionActions
     {
         private @PlayerInput m_Wrapper;
-        public LocomotionActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Locomotion_Movement;
-        public InputActionMap Get() { return m_Wrapper.m_Locomotion; }
+        public _locomotionActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @_movement => m_Wrapper.m__locomotion__movement;
+        public InputActionMap Get() { return m_Wrapper.m__locomotion; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LocomotionActions set) { return set.Get(); }
-        public void SetCallbacks(ILocomotionActions instance)
+        public static implicit operator InputActionMap(_locomotionActions set) { return set.Get(); }
+        public void SetCallbacks(I_locomotionActions instance)
         {
-            if (m_Wrapper.m_LocomotionActionsCallbackInterface != null)
+            if (m_Wrapper.m__locomotionActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_LocomotionActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_LocomotionActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_LocomotionActionsCallbackInterface.OnMovement;
+                @_movement.started -= m_Wrapper.m__locomotionActionsCallbackInterface.On_movement;
+                @_movement.performed -= m_Wrapper.m__locomotionActionsCallbackInterface.On_movement;
+                @_movement.canceled -= m_Wrapper.m__locomotionActionsCallbackInterface.On_movement;
             }
-            m_Wrapper.m_LocomotionActionsCallbackInterface = instance;
+            m_Wrapper.m__locomotionActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
+                @_movement.started += instance.On_movement;
+                @_movement.performed += instance.On_movement;
+                @_movement.canceled += instance.On_movement;
             }
         }
     }
-    public LocomotionActions @Locomotion => new LocomotionActions(this);
+    public _locomotionActions @_locomotion => new _locomotionActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -285,8 +285,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface ILocomotionActions
+    public interface I_locomotionActions
     {
-        void OnMovement(InputAction.CallbackContext context);
+        void On_movement(InputAction.CallbackContext context);
     }
 }
