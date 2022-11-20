@@ -1,9 +1,11 @@
+using QuantumWeavers.Core;
 using QuantumWeavers.Input;
 using UnityEngine;
 
 namespace QuantumWeavers.Player {
 	public class PlayerCamera : MonoBehaviour {
 		[SerializeField] private Transform Player;
+		[SerializeField] private Transform Orientation;
 		[SerializeField] private float MouseSensitivity = 100f;
 
 		private InputHandler _input;
@@ -12,7 +14,7 @@ namespace QuantumWeavers.Player {
 		private float _yRotation;
 
 		private void Start() {
-			_input = FindObjectOfType<InputHandler>();
+			_input = GameManager.Instance.GetInput();
 
 			Player = transform.parent;
 		}
