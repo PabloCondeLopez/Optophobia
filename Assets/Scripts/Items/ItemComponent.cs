@@ -6,15 +6,22 @@ namespace QuantumWeavers.Items
 {
     public class ItemComponent : MonoBehaviour
     {
+        [Tooltip("Item.")]
         private Item _item;
+        [Tooltip("Hand that holds the item. SerializeField: you can change it from the editor.")]
         [SerializeField] private PlayerHand _playerHand;
 
+        /// <summary>
+        /// Finds the PlayerHand and assigns it to _playerHand.
+        /// </summary>
         private void OnEnable()
         {
             _playerHand = FindObjectOfType<PlayerHand>();
         }
+
         /// <summary>
-        /// 
+        /// The player takes the item interacted with. 
+        /// If it already has an item it leaves it in the position of the item that's been collected. 
         /// </summary>
         public void TakeObject()
         {

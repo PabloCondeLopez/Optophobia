@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace QuantumWeavers.Input {
     public class InputHandler : MonoBehaviour {
+
         private InputActions _input;
         private Vector2 _look;
         
