@@ -6,14 +6,24 @@ namespace QuantumWeavers
 {
     public class ItemComponent : MonoBehaviour
     {
-        private Item Item;
+        private Item _item;
+        [SerializeField] private PlayerHand _playerHand;
 
+        private void OnEnable()
+        {
+            _playerHand = FindObjectOfType<PlayerHand>();
+        }
         /// <summary>
         /// 
         /// </summary>
-        public void takeObject()
+        public void TakeObject()
         {
-            
+            if (_playerHand.GetItemOnHand())
+            {
+                // asignarle la posicion del objeto que coges
+            }
+
+            _playerHand.SetItemOnHand(_item);
         }
 
         /// <summary>
