@@ -7,9 +7,12 @@ namespace QuantumWeavers.Core
     {
         
         #region Singleton
-
+        [Tooltip("Instance of GameManager, so it can be accessed from other classes.")]
         public static GameManager Instance;
         
+        /// <summary>
+        /// Initializes Instance.
+        /// </summary>
         private void Awake()
         { 
             if (Instance != null) return;
@@ -18,9 +21,13 @@ namespace QuantumWeavers.Core
         }
         
         #endregion
-
+        [Tooltip("InputHandler.")]
         [SerializeField] private InputHandler Input;
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Input.</returns>
         public InputHandler GetInput()
         {
             return Input;
