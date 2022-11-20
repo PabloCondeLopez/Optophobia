@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 namespace QuantumWeavers.Input {
     public class InputHandler : MonoBehaviour {
-        private PlayerInput _input;
+        private InputActions _input;
         private Vector2 _movement;
         private void Awake() {
             if (_input == null) {
-                _input = new PlayerInput();
+                _input = new InputActions();
             }
 
-            _input._locomotion._movement.performed += OnJoystickMovement;
+            _input.PlayerInput.Look.performed += OnCameraMovement;
         }
 
         private void OnEnable() {
@@ -29,7 +29,7 @@ namespace QuantumWeavers.Input {
 
         #endregion
 
-        private void OnJoystickMovement(InputAction.CallbackContext value) {
+        private void OnCameraMovement(InputAction.CallbackContext value) {
             if (value.performed)
                 _movement = value.ReadValue<Vector2>();
             
