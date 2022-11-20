@@ -1,8 +1,8 @@
 {
-    "name": "Project.Player",
+    "name": "Project.Item",
     "rootNamespace": "",
     "references": [
-        "GUID:08f1281f0ca48a54b8540e857881b00a"
+        "GUID:ae5c0efc658555a4391db7ce63fea9ce"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
