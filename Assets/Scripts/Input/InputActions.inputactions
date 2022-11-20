@@ -1,8 +1,8 @@
 {
-    "name": "PlayerInput",
+    "name": "InputActions",
     "maps": [
         {
-            "name": "PlayerInput",
+            "name": "Player",
             "id": "bff85e59-840d-4941-a4d6-398380bee5ce",
             "actions": [
                 {
@@ -21,7 +21,7 @@
                     "id": "a271bf28-cb68-4905-bd2f-ca7add115956",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=0.5,y=0.5),InvertVector2(invertX=false)",
+                    "processors": "",
                     "groups": "Mouse",
                     "action": "Look",
                     "isComposite": false,
@@ -32,7 +32,7 @@
                     "id": "d0775338-bda7-4a23-b5d4-853ceb1a4901",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,

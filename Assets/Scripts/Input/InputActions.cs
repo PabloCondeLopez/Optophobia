@@ -24,7 +24,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""PlayerInput"",
+            ""name"": ""Player"",
             ""id"": ""bff85e59-840d-4941-a4d6-398380bee5ce"",
             ""actions"": [
                 {
@@ -43,7 +43,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""a271bf28-cb68-4905-bd2f-ca7add115956"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=0.5,y=0.5),InvertVector2(invertX=false)"",
+                    ""processors"": """",
                     ""groups"": ""Mouse"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -54,7 +54,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""d0775338-bda7-4a23-b5d4-853ceb1a4901"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -99,9 +99,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // PlayerInput
-        m_PlayerInput = asset.FindActionMap("PlayerInput", throwIfNotFound: true);
-        m_PlayerInput_Look = m_PlayerInput.FindAction("Look", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -158,29 +158,29 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // PlayerInput
-    private readonly InputActionMap m_PlayerInput;
-    private IPlayerInputActions m_PlayerInputActionsCallbackInterface;
-    private readonly InputAction m_PlayerInput_Look;
-    public struct PlayerInputActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Look;
+    public struct PlayerActions
     {
         private @InputActions m_Wrapper;
-        public PlayerInputActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Look => m_Wrapper.m_PlayerInput_Look;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
+        public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerInputActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerInputActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_PlayerInputActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Look.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnLook;
+                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
             }
-            m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Look.started += instance.OnLook;
@@ -189,7 +189,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
             }
         }
     }
-    public PlayerInputActions @PlayerInput => new PlayerInputActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
     private int m_MouseSchemeIndex = -1;
     public InputControlScheme MouseScheme
     {
@@ -217,7 +217,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface IPlayerInputActions
+    public interface IPlayerActions
     {
         void OnLook(InputAction.CallbackContext context);
     }

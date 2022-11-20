@@ -10,7 +10,7 @@ namespace QuantumWeavers.Player {
         }
 
         private void Update() {
-            _locomotion.TickUpdate();
+           
         }
     }
 }

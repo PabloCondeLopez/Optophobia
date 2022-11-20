@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace QuantumWeavers
+namespace QuantumWeavers.Items
 {
     public class Item : ScriptableObject
     {
