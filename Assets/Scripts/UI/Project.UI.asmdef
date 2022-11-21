@@ -1,0 +1,16 @@
+{
+    "name": "Project.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f7925373a9002e241a7e57378ca89ff7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
