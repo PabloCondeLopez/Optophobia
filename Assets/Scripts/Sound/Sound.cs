@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-
-
 
 namespace QuantumWeavers.Sound 
 {
+    public enum AudioTypes {
+        SoundEffect, 
+        Music
+    }
+
     [System.Serializable]
     public class Sound
     {
-        public enum AudioTypes { SoundEffect, Music }
         [Tooltip("Types of audio: 0-SoundEffect, 1-Music.")]
         public AudioTypes AudioType;
 

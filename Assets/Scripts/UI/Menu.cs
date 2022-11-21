@@ -14,7 +14,7 @@ namespace QuantumWeavers.UI
         public void OnStartButton()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            SoundManager.Instance.Play("button");
+            SoundManager.Instance.Play("Button");
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace QuantumWeavers.UI
         public void OnExitButton()
         {
             Application.Quit();
-            SoundManager.Instance.Play("button");
+            SoundManager.Instance.Play("Button");
         }
 
         public void PlayButton()

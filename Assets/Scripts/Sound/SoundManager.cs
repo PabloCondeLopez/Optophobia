@@ -43,11 +43,11 @@ namespace QuantumWeavers.Sound
 
                 switch (s.AudioType)
                 {
-                    case Sound.AudioTypes.SoundEffect:
+                    case AudioTypes.SoundEffect:
                         s.Source.outputAudioMixerGroup = SoundEffectsMixerGroup;
                         break;
 
-                    case Sound.AudioTypes.Music:
+                    case AudioTypes.Music:
                         s.Source.outputAudioMixerGroup = MusicMixerGroup;
                         break;
                 }
@@ -60,10 +60,10 @@ namespace QuantumWeavers.Sound
         /// <summary>
         /// Finds the clip named "clipname" and plays it if it exists.
         /// </summary>
-        /// <param name="clipname">Name of the clip to Play.</param>
-        public void Play(string clipname)
+        /// <param name="clipName">Name of the clip to Play.</param>
+        public void Play(string clipName)
         {
-            Sound s = Array.Find(_sounds, dummySound => dummySound.ClipName == clipname);
+            Sound s = Array.Find(_sounds, dummySound => dummySound.ClipName == clipName);
             if (s == null) return;
             s.Source.Play();
         }
@@ -71,10 +71,10 @@ namespace QuantumWeavers.Sound
         /// <summary>
         /// Finds the clip named "clipname" and stops it if it exists.
         /// </summary>
-        /// <param name="clipname">Name of the clip to Stop.</param>
-        public void Stop(string clipname)
+        /// <param name="clipName">Name of the clip to Stop.</param>
+        public void Stop(string clipName)
         {
-            Sound s = Array.Find(_sounds, dummySound => dummySound.ClipName == clipname);
+            Sound s = Array.Find(_sounds, dummySound => dummySound.ClipName == clipName);
             if (s == null) return;
             s.Source.Stop();
         }
