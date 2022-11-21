@@ -1,6 +1,3 @@
-using QuantumWeavers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace QuantumWeavers.Items {

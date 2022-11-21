@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ItemPick",
+                    "type": "Button",
+                    "id": "de21ef13-7b83-458e-924f-af3daf191793",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -50,7 +59,7 @@
                     "id": "d0775338-bda7-4a23-b5d4-853ceb1a4901",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "StickDeadzone,ScaleVector2(x=25,y=25)",
                     "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -60,6 +69,17 @@
                     "name": "",
                     "id": "6eb36e70-ec42-4a30-8cd0-7cd0df4a62e1",
                     "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugEyes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00d3af92-b200-4750-b413-e310db38d7a0",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -127,7 +147,7 @@
                     "id": "edafb9b8-a2ff-4e31-8083-d54c09516984",
                     "path": "2DVector",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "InvertVector2(invertY=false)",
                     "groups": "",
                     "action": "Movement",
                     "isComposite": true,
@@ -136,7 +156,7 @@
                 {
                     "name": "up",
                     "id": "8adb0277-174b-4be1-a7a7-3a19f5102f61",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -176,6 +196,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1903dec9-a4a5-42f8-b307-f820290bba8b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemPick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

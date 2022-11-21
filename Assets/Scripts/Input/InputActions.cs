@@ -53,6 +53,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ItemPick"",
+                    ""type"": ""Button"",
+                    ""id"": ""de21ef13-7b83-458e-924f-af3daf191793"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -72,7 +81,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""d0775338-bda7-4a23-b5d4-853ceb1a4901"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone"",
+                    ""processors"": ""StickDeadzone,ScaleVector2(x=25,y=25)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -82,6 +91,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6eb36e70-ec42-4a30-8cd0-7cd0df4a62e1"",
                     ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugEyes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00d3af92-b200-4750-b413-e310db38d7a0"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -149,7 +169,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""id"": ""edafb9b8-a2ff-4e31-8083-d54c09516984"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2(invertY=false)"",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": true,
@@ -158,7 +178,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""8adb0277-174b-4be1-a7a7-3a19f5102f61"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -198,6 +218,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1903dec9-a4a5-42f8-b307-f820290bba8b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ItemPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -243,6 +274,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_DebugEyes = m_Player.FindAction("DebugEyes", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_ItemPick = m_Player.FindAction("ItemPick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +337,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_DebugEyes;
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_ItemPick;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -312,6 +345,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @DebugEyes => m_Wrapper.m_Player_DebugEyes;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @ItemPick => m_Wrapper.m_Player_ItemPick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -330,6 +364,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @ItemPick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemPick;
+                @ItemPick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemPick;
+                @ItemPick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnItemPick;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -343,6 +380,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @ItemPick.started += instance.OnItemPick;
+                @ItemPick.performed += instance.OnItemPick;
+                @ItemPick.canceled += instance.OnItemPick;
             }
         }
     }
@@ -379,5 +419,6 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnDebugEyes(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnItemPick(InputAction.CallbackContext context);
     }
 }
