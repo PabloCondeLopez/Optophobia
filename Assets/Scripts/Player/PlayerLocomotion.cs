@@ -18,6 +18,9 @@ namespace QuantumWeavers.Player {
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void OnEnable() {
             _rb = GetComponent<Rigidbody>();
             _collider = GetComponent<CapsuleCollider>();

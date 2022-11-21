@@ -27,7 +27,7 @@ namespace QuantumWeavers
         {
             if (_playerHand.GetItemOnHand())
             {
-                // asignarle la posicion del objeto que coges
+                // TODO - asignarle la posicion del objeto que coges
             }
 
             _playerHand.SetItemOnHand(_item);
@@ -39,12 +39,12 @@ namespace QuantumWeavers
         /// <param name="interactableObject">The player is trying to use the item in this object.</param>
         public void UseObject(GameObject interactableObject)
         {
-            // comprueba si la etiqueta de interactableObject es la misma que la del objeto
+            // TODO - comprueba si la etiqueta de interactableObject es la misma que la del objeto
             
             if (interactableObject.CompareTag(tag))
             {
-                // usa el objeto => llama a la funcion desbloquear del interactable object
-                // actualiza la mano del jugador
+                // TODO - usa el objeto => llama a la funcion desbloquear del interactable object
+                // TODO - actualiza la mano del jugador
             }
         }        
     }
