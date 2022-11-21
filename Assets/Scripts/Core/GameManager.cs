@@ -1,3 +1,4 @@
+using System;
 using QuantumWeavers.Input;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace QuantumWeavers.Core
         #endregion
         [Tooltip("InputHandler.")]
         [SerializeField] private InputHandler Input;
+
+        public bool EyesOpen { get; set; }
         
         /// <summary>
         /// 
@@ -31,6 +34,10 @@ namespace QuantumWeavers.Core
         public InputHandler GetInput()
         {
             return Input;
+        }
+
+        private void Update() {
+            EyesOpen = Input.EyesOpen();
         }
     }
 }

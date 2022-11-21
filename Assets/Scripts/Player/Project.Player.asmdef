@@ -2,7 +2,8 @@
     "name": "Project.Player",
     "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:ae5c0efc658555a4391db7ce63fea9ce",
+        "GUID:778670a0579f21f418edf0823119022a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

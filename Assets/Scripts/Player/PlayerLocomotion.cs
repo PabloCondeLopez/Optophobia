@@ -1,42 +1,43 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace QuantumWeavers.Player {
     public class PlayerLocomotion : MonoBehaviour {
-        [SerializeField] private float PlayerSpeed;
-        [SerializeField] private GameObject CineMachineCameraTarget;
-        [SerializeField] private float TopClamp = 90.0f;
-        [SerializeField] private float BottomClamp = -90.0f;
 
+        [SerializeField] private float PlayerSpeed = 10f;
+        [SerializeField] private Camera PlayerCamera;
+
+        private PlayerManager _playerManager;
         private Rigidbody _rb;
-        private CapsuleCollider _collider;
-        private PlayerInput _input;
 
-        private float _cinemachineTargetPitch;
-        
-        private float _rotationVelocity;
-        private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void OnEnable() {
+        private float _xMovement;
+        private float _zMovement;
+        private void Start() {
             _rb = GetComponent<Rigidbody>();
-            _collider = GetComponent<CapsuleCollider>();
-            _input = GetComponent<PlayerInput>();
+            _playerManager = GetComponent<PlayerManager>();
         }
 
-        public void TickUpdate() {
-            //_rb.MovePosition(_rb.position + PlayerSpeed * Time.deltaTime * Vector3.forward);
+        private void Update() {
+            HandleMovement();
         }
 
-        public void LateTickUpdate() {
-            CameraRotation();
-        }
-
-        private void CameraRotation() {
+        private void HandleMovement() {
+            _xMovement = _playerManager.GameManager.GetInput().GetMovement().x;
+            _zMovement = _playerManager.GameManager.GetInput().GetMovement().y;
             
+            if(!_playerManager.GameManager.EyesOpen) {
+                Vector3 forward = PlayerCamera.transform.forward.normalized;
+                Vector3 right = PlayerCamera.transform.right.normalized;
+
+                forward.y = 0;
+                right.y = 0;
+
+                Vector3 forwardRelative = _zMovement * forward;
+                Vector3 rightRelative = _xMovement * right;
+
+                Vector3 cameraRelativeMovement = forwardRelative + rightRelative;
+                
+                _rb.MovePosition(_rb.position + PlayerSpeed * Time.deltaTime * cameraRelativeMovement);
+            }
         }
     }
 }
