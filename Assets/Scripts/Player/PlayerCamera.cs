@@ -41,29 +41,24 @@ namespace QuantumWeavers.Player {
 		}
 
 		private void SeekItems() {
-			Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up,
-				2.0f, ItemMask);
-			
-			foreach (Collider col in colliders) {
-				if(_previousCollider != col) {
-					if (col != null) {
-						col.GetComponent<Renderer>().material.SetFloat(Outline, 0.01f);
-						_previousCollider = col;
-						return;
+			Debug.DrawRay(transform.position, Vector3.forward * 2f, Color.cyan);
+
+			if(Physics.SphereCast(transform.position, 0.5f, transform.forward, out RaycastHit hit, 1f, ItemMask))
+			{
+					if (_previousCollider != hit.collider) {
+						if (hit.collider) {
+							hit.collider.GetComponent<Renderer>().material.SetFloat(Outline, 0.01f);
+							_previousCollider = hit.collider;
+							return;
+						}
 					}
-				}
 			}
-			
-			if(colliders.Length == 0 && _previousCollider) {
+
+			if(!hit.collider && _previousCollider) {
 				_previousCollider.GetComponent<Renderer>().material.SetFloat(Outline, 0f);
 				_previousCollider = null;
 			}
 			
-		}
-
-		private void OnDrawGizmos() {
-			Gizmos.color = Color.yellow;
-			Gizmos.DrawWireSphere(ItemDetectionPosition.position, ItemDetectionRadius);
 		}
 	}
 }

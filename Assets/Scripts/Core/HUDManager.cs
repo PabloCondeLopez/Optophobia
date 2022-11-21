@@ -4,6 +4,7 @@ using UnityEngine.UI;
 namespace QuantumWeavers.Core {
 	public class HUDManager : MonoBehaviour {
 		[SerializeField] private Image EyesIndicator;
+		[SerializeField] private Image EyesClosed;
 		[SerializeField] private Sprite EyesOpenSprite;
 		[SerializeField] private Sprite EyesClosedSprite;
 
@@ -19,6 +20,7 @@ namespace QuantumWeavers.Core {
 
 		private void HandleEyesSprite() {
 			EyesIndicator.sprite = _gameManager.EyesOpen ? EyesOpenSprite : EyesClosedSprite;
+			//EyesClosed.enabled = !_gameManager.EyesOpen;
 		}
 	}
 }
