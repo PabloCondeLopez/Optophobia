@@ -1,0 +1,17 @@
+{
+    "name": "Project.Components.Items",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ae5c0efc658555a4391db7ce63fea9ce",
+        "GUID:e5f9229e113d5c2478d349bce7a1105e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
