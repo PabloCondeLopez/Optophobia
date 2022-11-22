@@ -53,8 +53,9 @@ namespace QuantumWeavers.Components.Core
             } else if (Input.OnPause() && _state == GameStates.Pause) {
                 _state = GameStates.Playing;
             }
-            
-            EyesOpen = Input.EyesHandler();
+
+            if (Input.EyesHandler())
+                EyesOpen = !EyesOpen;
         }
 
         public void ResumeGame() {

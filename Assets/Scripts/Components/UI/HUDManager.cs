@@ -9,6 +9,7 @@ namespace QuantumWeavers.Components.UI {
 		[SerializeField] private Sprite EyesOpenSprite;
 		[SerializeField] private Sprite EyesClosedSprite;
 		[SerializeField] private GameObject PauseMenu;
+		[SerializeField] private bool SimulateClosedEyes;
 
 		private GameManager _gameManager;
 
@@ -23,7 +24,12 @@ namespace QuantumWeavers.Components.UI {
 
 		private void HandleEyesSprite() {
 			EyesIndicator.sprite = _gameManager.EyesOpen ? EyesOpenSprite : EyesClosedSprite;
-			//EyesClosed.enabled = !_gameManager.EyesOpen;
+			
+			if(SimulateClosedEyes)
+				EyesClosed.enabled = !_gameManager.EyesOpen;
+			else {
+				EyesClosed.enabled = false;
+			}
 		}
 
 		public void OnCloseButton()
