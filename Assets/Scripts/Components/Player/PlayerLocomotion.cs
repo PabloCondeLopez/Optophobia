@@ -1,4 +1,5 @@
 using UnityEngine;
+using QuantumWeavers.Components.Sound;
 
 namespace QuantumWeavers.Components.Player {
     public class PlayerLocomotion : MonoBehaviour {
@@ -38,6 +39,11 @@ namespace QuantumWeavers.Components.Player {
                 
                 _rb.MovePosition(_rb.position + PlayerSpeed * Time.deltaTime * cameraRelativeMovement);
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            SoundManager.Instance.Play("CollisionSound");
         }
     }
 }
