@@ -25,5 +25,10 @@ namespace QuantumWeavers.Components.UI {
 			EyesIndicator.sprite = _gameManager.EyesOpen ? EyesOpenSprite : EyesClosedSprite;
 			//EyesClosed.enabled = !_gameManager.EyesOpen;
 		}
+
+		public void OnCloseButton()
+		{
+			_gameManager.ResumeGame();
+		}
 	}
 }
