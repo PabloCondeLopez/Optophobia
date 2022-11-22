@@ -79,12 +79,10 @@ namespace QuantumWeavers.Components.Sound {
         /// <summary>
         /// Updates the volume in settings.
         /// </summary>
-        public void UpdateMixerVolume()
+        public void UpdateMixerVolume(float musicVolume, float soundEffectsVolume)
         {
-            //Debug.Log("ahora el volumen es" + Settings.soundEffectsVolume.ToString());
-            //TODO - Create Settings class and connect it to SoundManager.
-            //TODO - MusicMixerGroup.audioMixer.SetFloat("Music", Settings.musicVolume);
-            //TODO - SoundEffectsMixerGroup.audioMixer.SetFloat("SoundEffects", Settings.soundEffectsVolume);
+            MusicMixerGroup.audioMixer.SetFloat("Music", musicVolume);
+            SoundEffectsMixerGroup.audioMixer.SetFloat("SoundEffects", soundEffectsVolume);
         }
 	}
 	
