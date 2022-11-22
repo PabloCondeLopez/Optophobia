@@ -46,16 +46,14 @@ namespace QuantumWeavers.Components.UI
         /// <summary>
         /// It initializes all the volumes, the sliders and the texts.
         /// </summary>
-        private void StartSounds()
+        public void StartSounds()
         {
-            GeneralVolume = 10;
-            MusicVolume = 10;
-            SoundEffectsVolume = 10;
+            AudioMixer.SetFloat("Volume", GeneralVolume);
             SoundManager.Instance.UpdateMixerVolume(MusicVolume, SoundEffectsVolume);
 
-            GeneralSlider.value = GeneralVolume;
-            MusicSlider.value = MusicVolume;
-            EffectsSlider.value = SoundEffectsVolume;
+            GeneralSlider.value = (GeneralVolume + 40 * 2) / 100;
+            MusicSlider.value = (MusicVolume + 40 * 2) / 100;
+            EffectsSlider.value = (SoundEffectsVolume + 40 * 2) / 100;
 
             UpdateText();
         }
