@@ -6,12 +6,15 @@ namespace QuantumWeavers.Components.Items {
         [SerializeField] private LayerMask ItemMask;
         [SerializeField] private float ItemDetectionRadius = 0.5f;
         [SerializeField] private float ItemDetectionRange = 1f;
+        
+        [SerializeField] private LayerMask InteractableMask;
+        [SerializeField] private float InteractableDetectionRange = 1f;
 
         private GameManager _gameManager;
         
-        private Collider _previousCollider;
-        private static readonly int Outline = Shader.PropertyToID("_Outline");
-        
+        private Collider _previousItemCollider;
+        private Collider _previousInteractableCollider;
+
         [Tooltip("Item that the player is holding at the moment.")]
         private ItemComponent _itemOnHand;
 
@@ -21,6 +24,7 @@ namespace QuantumWeavers.Components.Items {
 
         public void Update() {
             SeekItems();
+            SeekInteractables();
         }
         
         /// <summary>
@@ -45,33 +49,58 @@ namespace QuantumWeavers.Components.Items {
             if(Physics.SphereCast(transform.position, ItemDetectionRadius, transform.forward, out RaycastHit hit, ItemDetectionRange, ItemMask)) {
                 ItemComponent item = hit.collider.GetComponent<ItemComponent>();
                 
-                if (_previousCollider != hit.collider) {
+                if (_previousItemCollider != hit.collider) {
                     if (hit.collider) {
                         item.OutlineItem();
                         item.HUD().Enable();
-                        _previousCollider = hit.collider;
+                        _previousItemCollider = hit.collider;
                         return;
                     }
                 }
                 
-                if (_gameManager.GetInput().OnItemPick()) {
+                if (_gameManager.GetInput().OnInteract()) {
                     item.TakeObject();
                 }
             }
 
-            if(!hit.collider && _previousCollider) {
-                ItemComponent previousItem = _previousCollider.GetComponent<ItemComponent>();
+            if(!hit.collider && _previousItemCollider) {
+                ItemComponent previousItem = _previousItemCollider.GetComponent<ItemComponent>();
                 
                 previousItem.RemoveOutline();
                 previousItem.HUD().Disable();
-                _previousCollider = null;
+                _previousItemCollider = null;
+            }
+        }
+
+        private void SeekInteractables() {
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, InteractableDetectionRange, InteractableMask)) {
+                Interactable interactable = hit.collider.GetComponentInParent<Interactable>();
+
+                if (_previousInteractableCollider != hit.collider) {
+                    if (hit.collider) {
+                        interactable.OutlineInteractable();
+                        _previousInteractableCollider = hit.collider;
+                        return;
+                    }
+                }
+
+                if (_gameManager.GetInput().OnInteract() && _itemOnHand) {
+                    _itemOnHand.UseObject(interactable);
+                }
+            }
+
+            if (!hit.collider && _previousInteractableCollider) {
+                Interactable previousInteractable = _previousInteractableCollider.GetComponentInParent<Interactable>();
+                
+                previousInteractable.RemoveOutline();
+                _previousInteractableCollider = null;
             }
         }
         
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(transform.position, ItemDetectionRange);
- 
+            Gizmos.DrawRay(transform.position, Vector3.forward * InteractableDetectionRange);
+
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, ItemDetectionRadius, transform.forward * 1, out hit, ItemDetectionRange, ItemMask))
             {

@@ -33,7 +33,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ItemPick",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "de21ef13-7b83-458e-924f-af3daf191793",
                     "expectedControlType": "Button",
@@ -204,7 +204,7 @@
                     "interactions": "Tap",
                     "processors": "",
                     "groups": "",
-                    "action": "ItemPick",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

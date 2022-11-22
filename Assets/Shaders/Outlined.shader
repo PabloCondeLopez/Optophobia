@@ -6,7 +6,7 @@ Shader "Custom/Outlined"
     {
         _Color ("Color", Color) = (.5,.5,.5,1)
         _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
-        _Outline ("Outline Width", Range (0.0, 0.03)) = 0.005
+        _Outline ("Outline Width", Range (0.0, 0.1)) = 0.005
         _MainTex ("Base (RGB)", 2D) = "white" { }
     }
     CGINCLUDE

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using QuantumWeavers.Classes.Items;
 
@@ -14,6 +15,8 @@ namespace QuantumWeavers.Components.Items
         private ItemHUD _hud;
         private Renderer _itemMaterial;
         private static readonly int Outline = Shader.PropertyToID("_Outline");
+
+        public event Action Used;
 
         /// <summary>
         /// Finds the PlayerHand and assigns it to _playerHand.
@@ -50,14 +53,11 @@ namespace QuantumWeavers.Components.Items
         /// If the tag of the item correlates to the one of the object, it calls the function unlock() of the interactableObject.
         /// </summary>
         /// <param name="interactableObject">The player is trying to use the item in this object.</param>
-        public void UseObject(GameObject interactableObject)
+        public void UseObject(Interactable interactableObject)
         {
-            // TODO - comprueba si la etiqueta de interactableObject es la misma que la del objeto
-            
-            if (interactableObject.CompareTag(tag))
-            {
-                // TODO - usa el objeto => llama a la funcion desbloquear del interactable object
-                // TODO - actualiza la mano del jugador
+            if (interactableObject.GetItemToUse() == this) {
+                Used?.Invoke();
+                Destroy(gameObject);
             }
         }
 

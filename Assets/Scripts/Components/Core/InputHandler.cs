@@ -42,8 +42,8 @@ namespace QuantumWeavers.Components.Core {
             return _movement;
         }
 
-        public bool OnItemPick() {
-            return _input.Player.ItemPick.WasPressedThisFrame();
+        public bool OnInteract() {
+            return _input.Player.Interact.WasPressedThisFrame();
         }
 
         public bool EyesOpen() {
