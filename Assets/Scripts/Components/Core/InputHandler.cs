@@ -7,17 +7,11 @@ namespace QuantumWeavers.Components.Core {
         private Vector2 _look;
         private Vector2 _movement;
 
-        private bool _eyesOpenButton;
-        
         private void Awake() {
             if (_input == null) {
                 _input = new InputActions();
             }
 
-            Cursor.lockState = CursorLockMode.Locked;
-
-            _input.Player.DebugEyes.performed += i => _eyesOpenButton = !_eyesOpenButton;
-            
             DontDestroyOnLoad(this);
         }
 
@@ -46,8 +40,12 @@ namespace QuantumWeavers.Components.Core {
             return _input.Player.Interact.WasPressedThisFrame();
         }
 
-        public bool EyesOpen() {
-            return _eyesOpenButton;
+        public bool OnPause() {
+            return _input.Player.Pause.WasPressedThisFrame();
+        }
+
+        public bool EyesHandler() {
+            return _input.Player.DebugEyes.WasPressedThisFrame();
         }
 
         private void OnEnable() {

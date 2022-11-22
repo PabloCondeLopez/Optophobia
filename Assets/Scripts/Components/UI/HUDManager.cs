@@ -8,6 +8,7 @@ namespace QuantumWeavers.Components.UI {
 		[SerializeField] private Image EyesClosed;
 		[SerializeField] private Sprite EyesOpenSprite;
 		[SerializeField] private Sprite EyesClosedSprite;
+		[SerializeField] private GameObject PauseMenu;
 
 		private GameManager _gameManager;
 
@@ -16,6 +17,7 @@ namespace QuantumWeavers.Components.UI {
 		}
 
 		private void Update() {
+			PauseMenu.SetActive(_gameManager.GamePaused);
 			HandleEyesSprite();
 		}
 

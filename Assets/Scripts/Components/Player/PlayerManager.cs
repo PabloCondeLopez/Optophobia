@@ -22,6 +22,8 @@ namespace QuantumWeavers.Components.Player {
         }
 
         private void Update() {
+            if (GameManager.Instance.GamePaused) return;
+            
             _camera.TickUpdate();
             _locomotion.TickUpdate();
         }
