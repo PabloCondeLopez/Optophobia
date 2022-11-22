@@ -1,9 +1,10 @@
 using UnityEngine;
+using TMPro;
 
-namespace QuantumWeavers.Components.Items {
+namespace QuantumWeavers.Components.UI {
 	public class ItemHUD : MonoBehaviour {
 		[SerializeField] private Camera PlayerCamera;
-		
+
 		private void Update() {
 			Vector3 cameraPosition = PlayerCamera.transform.position;
 			Vector3 direction = cameraPosition - transform.position;

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using QuantumWeavers.Classes.Items;
+using QuantumWeavers.Components.UI;
 
 namespace QuantumWeavers.Components.Items
 {

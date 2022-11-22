@@ -61,7 +61,10 @@ namespace QuantumWeavers.Components.Sound {
         public void Play(string clipName)
         {
             Classes.Sound.Sound s = Array.Find(Sounds, dummySound => dummySound.ClipName == clipName);
-            if (s == null) return;
+            if (s == null) {
+                Debug.LogError("Sound " + clipName + " not found");
+                return;
+            }
             s.Source.Play();
         }
 
@@ -72,7 +75,10 @@ namespace QuantumWeavers.Components.Sound {
         public void Stop(string clipName)
         {
             Classes.Sound.Sound s = Array.Find(Sounds, dummySound => dummySound.ClipName == clipName);
-            if (s == null) return;
+            if (s == null) {
+                Debug.LogError("Sound " + clipName + " not found");
+                return;
+            }
             s.Source.Stop();
         }
 
