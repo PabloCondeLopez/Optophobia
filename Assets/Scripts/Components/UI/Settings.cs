@@ -54,7 +54,7 @@ namespace QuantumWeavers.Components.UI
         /// To a preset value if the haven't been changed previously.
         /// Or to the saved values if they have been changed.
         /// </summary>
-        protected void StartSounds()
+        public void StartSounds()
         {
             AudioMixer.SetFloat("Volume", PlayerPrefs.GetFloat("GeneralVolume"));
             AudioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));

@@ -16,6 +16,12 @@ namespace QuantumWeavers.Components.UI {
             PlayButton();
         }
 
+        public void OnDebugButton()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            PlayButton();
+        }
+
         /// <summary>
         /// Function that runs when the exit button is clicked.
         /// </summary>
