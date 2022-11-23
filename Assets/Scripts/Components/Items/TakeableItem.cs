@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using QuantumWeavers.Classes.Items;
 using QuantumWeavers.Components.UI;
+using QuantumWeavers.Components.Sound;
 
 namespace QuantumWeavers.Components.Items
 {
@@ -40,6 +41,8 @@ namespace QuantumWeavers.Components.Items
             _playerHand.SetItemOnHand(this);
             HUD().Disable();
             RemoveOutline();
+
+            SoundManager.Instance.Play("Button");
         }
 
         /// <summary>
