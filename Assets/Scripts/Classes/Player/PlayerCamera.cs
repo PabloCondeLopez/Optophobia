@@ -37,6 +37,9 @@ namespace QuantumWeavers.Components.Player {
 
 		#region Methods
 
+		/// <summary>
+		/// Handles the camera rotation
+		/// </summary>
 		private void Look() {
 			float mouseX = _input.GetLook().x * _mouseSensitivity * Time.deltaTime;
 			float mouseY = _input.GetLook().y * _mouseSensitivity * Time.deltaTime;

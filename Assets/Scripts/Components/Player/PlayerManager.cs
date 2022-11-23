@@ -5,15 +5,22 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Player {
     public class PlayerManager : MonoBehaviour {
+        [Tooltip("Position of the camera hold by the character")]
         [SerializeField] private Transform CameraPosition;
+        [Tooltip("Player's movement speed")]
         [SerializeField] private float PlayerSpeed = 10f;
+        [Tooltip("Sensitivity of the mouse movement")]
         [SerializeField] private float MouseSensitivity = 10f;
-
+        
+        // Player locomotion class
         private PlayerLocomotion _locomotion;
+        // Player camera class
         private PlayerCamera _camera;
 
+        #region Unity Events
+
         private void Start() {
-            InputHandler input = GameManager.Instance.GetInput();
+            InputHandler input = GameManager.Instance.Input;
             Rigidbody rb = GetComponentInChildren<Rigidbody>();
             Transform modelTransform = transform.GetChild(0).transform;
 
@@ -31,5 +38,7 @@ namespace QuantumWeavers.Components.Player {
         private void OnCollisionEnter(Collision collision) {
             SoundManager.Instance.Play("Button");
         }
+        
+        #endregion
     }
 }

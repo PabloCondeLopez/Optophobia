@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace QuantumWeavers.Classes.Items
-{
+namespace QuantumWeavers.Classes.Items {
     [System.Serializable]
     public class Item
     {

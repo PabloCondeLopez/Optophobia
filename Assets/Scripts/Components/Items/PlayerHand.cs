@@ -3,20 +3,27 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Items {
     public class PlayerHand : MonoBehaviour {
+        [Tooltip("Layer applied to the items")]
         [SerializeField] private LayerMask ItemMask;
+        [Tooltip("Radius where the items are going to be detected")]
         [SerializeField] private float ItemDetectionRadius = 0.5f;
+        [Tooltip("Maximum range where the items are going to be detected")]
         [SerializeField] private float ItemDetectionRange = 1f;
-        
+        [Tooltip("Layer applied to the interactable objects")]
         [SerializeField] private LayerMask InteractableMask;
+        [Tooltip("Maximum range where the interactable objects are going to be detected")]
         [SerializeField] private float InteractableDetectionRange = 1f;
-
-        private GameManager _gameManager;
         
+        // GameManager instance
+        private GameManager _gameManager;
+        // Previous item collider detected
         private Collider _previousItemCollider;
+        // Previous interactable collider detected
         private Collider _previousInteractableCollider;
-
         [Tooltip("Item that the player is holding at the moment.")]
         private ItemComponent _itemOnHand;
+
+        #region Unity Events
 
         private void Start() {
             _gameManager = GameManager.Instance;
@@ -24,9 +31,13 @@ namespace QuantumWeavers.Components.Items {
 
         public void Update() {
             SeekItems();
-            SeekInteractables();
+            SeekInteractableObjects();
         }
         
+        #endregion
+        
+        #region Getters
+
         /// <summary>
         /// Gets the current item
         /// </summary>
@@ -34,7 +45,10 @@ namespace QuantumWeavers.Components.Items {
         public ItemComponent GetItemOnHand() {
             return _itemOnHand;
         }
+        
+        #endregion
 
+        #region Setters
 
         /// <summary>
         /// Replaces the item that the player is holding with the new item.
@@ -45,6 +59,13 @@ namespace QuantumWeavers.Components.Items {
             _itemOnHand.AttachItem();
         }
         
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Seeks for items in a sphere
+        /// </summary>
         private void SeekItems() {
             if(Physics.SphereCast(transform.position, ItemDetectionRadius, transform.forward, out RaycastHit hit, ItemDetectionRange, ItemMask)) {
                 ItemComponent item = hit.collider.GetComponent<ItemComponent>();
@@ -52,13 +73,13 @@ namespace QuantumWeavers.Components.Items {
                 if (_previousItemCollider != hit.collider) {
                     if (hit.collider) {
                         item.OutlineItem();
-                        item.HUD().Enable();
+                        item.HUD().Enable(item.ItemName());
                         _previousItemCollider = hit.collider;
                         return;
                     }
                 }
                 
-                if (_gameManager.GetInput().OnInteract()) {
+                if (_gameManager.Input.OnInteract()) {
                     item.TakeObject();
                 }
             }
@@ -72,7 +93,10 @@ namespace QuantumWeavers.Components.Items {
             }
         }
 
-        private void SeekInteractables() {
+        /// <summary>
+        /// Seeks for interactable objects in a range
+        /// </summary>
+        private void SeekInteractableObjects() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, InteractableDetectionRange, InteractableMask)) {
                 Interactable interactable = hit.collider.GetComponentInParent<Interactable>();
 
@@ -84,7 +108,7 @@ namespace QuantumWeavers.Components.Items {
                     }
                 }
 
-                if (_gameManager.GetInput().OnInteract() && _itemOnHand) {
+                if (_gameManager.Input.OnInteract() && _itemOnHand) {
                     _itemOnHand.UseObject(interactable);
                 }
             }
@@ -96,27 +120,8 @@ namespace QuantumWeavers.Components.Items {
                 _previousInteractableCollider = null;
             }
         }
-        
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawRay(transform.position, Vector3.forward * InteractableDetectionRange);
 
-            RaycastHit hit;
-            if (Physics.SphereCast(transform.position, ItemDetectionRadius, transform.forward * 1, out hit, ItemDetectionRange, ItemMask))
-            {
-                Gizmos.color = Color.green;
-                Vector3 sphereCastMidpoint = transform.position + (transform.forward * hit.distance);
-                Gizmos.DrawWireSphere(sphereCastMidpoint, ItemDetectionRadius);
-                Gizmos.DrawSphere(hit.point, 0.1f);
-                Debug.DrawLine(transform.position, sphereCastMidpoint, Color.green);
-            }
-            else
-            {
-                Gizmos.color = Color.red;
-                Vector3 sphereCastMidpoint = transform.position + (transform.forward * (ItemDetectionRange-ItemDetectionRadius));
-                Gizmos.DrawWireSphere(sphereCastMidpoint, ItemDetectionRadius);
-                Debug.DrawLine(transform.position, sphereCastMidpoint, Color.red);
-            }
-        }
+        #endregion
+        
     }
 }

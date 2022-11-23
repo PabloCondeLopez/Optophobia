@@ -29,11 +29,13 @@ namespace QuantumWeavers.Components.UI
         public Slider EffectsSlider;
 
         [Tooltip("Text that shows the general volume value.")]
-        [SerializeField] private TextMeshProUGUI _generalVolumeText;
+        [SerializeField] private TextMeshProUGUI GeneralVolumeText;
         [Tooltip("Text that shows the music volume value.")]
-        [SerializeField] private TextMeshProUGUI _musicText;
+        [SerializeField] private TextMeshProUGUI MusicText;
         [Tooltip("Text that shows the sound effects volume value.")]
-        [SerializeField] private TextMeshProUGUI _soundEffectsText;
+        [SerializeField] private TextMeshProUGUI SoundEffectsText;
+
+        #region Unity Methods
 
         /// <summary>
         /// When started, it calls for StartSounds() to initialize the values.
@@ -42,6 +44,15 @@ namespace QuantumWeavers.Components.UI
         {
             StartSounds();
         }
+        
+        private void Update()
+        {
+            UpdateText();
+        }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// It initializes all the volumes, the sliders and the texts.
@@ -61,19 +72,16 @@ namespace QuantumWeavers.Components.UI
         /// <summary>
         /// Calls for UpdateText() so the text always reflects the value of the volumes.
         /// </summary>
-        private void Update()
-        {
-            UpdateText();
-        }
+        
 
         /// <summary>
         /// Updates the texts so the reflect the value of the volumes.
         /// </summary>
         private void UpdateText()
         {
-            _generalVolumeText.text = Mathf.FloorToInt((GeneralSlider.value * 100)).ToString();
-            _musicText.text = Mathf.FloorToInt((MusicSlider.value * 100)).ToString();
-            _soundEffectsText.text = Mathf.FloorToInt((EffectsSlider.value * 100)).ToString();
+            GeneralVolumeText.text = Mathf.FloorToInt((GeneralSlider.value * 100)).ToString();
+            MusicText.text = Mathf.FloorToInt((MusicSlider.value * 100)).ToString();
+            SoundEffectsText.text = Mathf.FloorToInt((EffectsSlider.value * 100)).ToString();
         }
 
         /// <summary>
@@ -114,7 +122,7 @@ namespace QuantumWeavers.Components.UI
             SoundManager.Instance.UpdateMixerVolume(MusicVolume, SoundEffectsVolume);
         }
 
-
+        #endregion
     }
 }
 

@@ -1,11 +1,8 @@
 using UnityEngine;
 using QuantumWeavers.Shared;
 
-namespace QuantumWeavers.Components.Core
-{
-    public class GameManager : MonoBehaviour
-    {
-        
+namespace QuantumWeavers.Components.Core {
+    public class GameManager : MonoBehaviour {
         #region Singleton
         [Tooltip("Instance of GameManager, so it can be accessed from other classes.")]
         public static GameManager Instance;
@@ -25,22 +22,16 @@ namespace QuantumWeavers.Components.Core
         
         #endregion
         
-        [Tooltip("InputHandler.")]
-        private InputHandler Input;
-
+        // Input handler component
+        public InputHandler Input { get; private set; }
+        // Checks if the eyes are currently open
         public bool EyesOpen { get; private set; }
+        // Checks if the game is paused
         public bool GamePaused { get; private set; }
-
+        // Determines the state of the game
         private GameStates _state;
-        
-        
-        /// <summary>
-        /// Gets the input of the game
-        /// </summary>
-        /// <returns>Input of the game</returns>
-        public InputHandler GetInput() {
-            return Input;
-        }
+
+        #region Unity Events
 
         private void Update() {
             GamePaused = _state == GameStates.Pause;
@@ -58,9 +49,18 @@ namespace QuantumWeavers.Components.Core
                 EyesOpen = !EyesOpen;
         }
 
+        #endregion
+
+        #region Methods
+        
+        /// <summary>
+        /// Continues the game setting the game state to playing.
+        /// </summary>
         public void ResumeGame() {
             _state = GameStates.Playing;
             GamePaused = false;
         }
+        
+        #endregion
     }
 }

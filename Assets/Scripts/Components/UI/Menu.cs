@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using QuantumWeavers.Components.Sound;
 
-namespace QuantumWeavers.Components.UI
-{
+namespace QuantumWeavers.Components.UI {
     public class Menu : MonoBehaviour
     {
+        #region Methods
+
         /// <summary>
         /// Function that runs when the start button is clicked.
         /// </summary>
@@ -33,6 +32,8 @@ namespace QuantumWeavers.Components.UI
         {
             SoundManager.Instance.Play("Button");
         }
+        
+        #endregion
 
     }
 }

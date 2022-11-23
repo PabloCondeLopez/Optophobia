@@ -7,17 +7,19 @@ namespace QuantumWeavers.Components.Items
 {
     public class ItemComponent : MonoBehaviour
     {
-        [Tooltip("Item.")]
+        [Tooltip("Item information.")]
         [SerializeField] private Item Item;
         
         //Hand that holds the item. SerializeField: you can change it from the editor
         private PlayerHand _playerHand;
         // HUD of the item
         private ItemHUD _hud;
-        private Renderer _itemMaterial;
-        private static readonly int Outline = Shader.PropertyToID("_Outline");
-
+        // Outline effect of the item
+        private OutlineEffect _outline;
+        // Event used to use the item
         public event Action Used;
+
+        #region Unity Events
 
         /// <summary>
         /// Finds the PlayerHand and assigns it to _playerHand.
@@ -26,8 +28,32 @@ namespace QuantumWeavers.Components.Items
         {
             _playerHand = FindObjectOfType<PlayerHand>();
             _hud = GetComponentInChildren<ItemHUD>(true);
-            _itemMaterial = GetComponent<Renderer>();
+            _outline = GetComponent<OutlineEffect>();
         }
+        
+        #endregion
+
+        #region Getters
+
+        /// <summary>
+        /// Gets the item's HUD
+        /// </summary>
+        /// <returns>The item's HUD</returns>
+        public ItemHUD HUD() {
+            return _hud;
+        }
+
+        /// <summary>
+        /// Gets the name of the item
+        /// </summary>
+        /// <returns>The name of the item</returns>
+        public string ItemName() {
+            return Item.Name;
+        }
+
+        #endregion
+        
+        #region Methods
 
         /// <summary>
         /// The player takes the item interacted with. 
@@ -45,13 +71,16 @@ namespace QuantumWeavers.Components.Items
             RemoveOutline();
         }
 
+        /// <summary>
+        /// Attaches the item to the player's hand
+        /// </summary>
         public void AttachItem() {
             transform.parent = _playerHand.transform;
             transform.localPosition = Item.PosOfAttachment;
         }
 
         /// <summary>
-        /// If the tag of the item correlates to the one of the object, it calls the function unlock() of the interactableObject.
+        /// If the tag of the item correlates to the one of the object, tries to use the interactableObject.
         /// </summary>
         /// <param name="interactableObject">The player is trying to use the item in this object.</param>
         public void UseObject(Interactable interactableObject)
@@ -61,17 +90,25 @@ namespace QuantumWeavers.Components.Items
                 Destroy(gameObject);
             }
         }
-
-        public ItemHUD HUD() {
-            return _hud;
-        }
-
+        
+        /// <summary>
+        /// Shows the object's outline
+        /// </summary>
         public void OutlineItem() {
-            _itemMaterial.material.SetFloat(Outline, 0.01f);
+            _outline.OutlineWidth = 10f;
         }
 
+        /// <summary>
+        /// Hides the object's outline
+        /// </summary>
         public void RemoveOutline() {
-            _itemMaterial.material.SetFloat(Outline, 0f);
+            _outline.OutlineWidth = 0f;
         }
+        
+        #endregion
+        
+
+        
+
     }
 }

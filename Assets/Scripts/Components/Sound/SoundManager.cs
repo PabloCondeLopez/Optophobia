@@ -15,6 +15,8 @@ namespace QuantumWeavers.Components.Sound {
         [Tooltip("Array of sounds. SerializeField: you can change it from the editor.")] 
         [SerializeField] private Classes.Sound.Sound[] Sounds;
 
+        #region Unity Events
+
         /// <summary>
         /// Initializes Instance. Calls for it to not be destroyed when loading new scenes.
         /// It initializes each sound in _sounds, establishes their type, an plays them if playOnAwake is true.
@@ -54,6 +56,10 @@ namespace QuantumWeavers.Components.Sound {
             }
         }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Finds the clip named "clipname" and plays it if it exists.
         /// </summary>
@@ -90,6 +96,9 @@ namespace QuantumWeavers.Components.Sound {
             MusicMixerGroup.audioMixer.SetFloat("Music", musicVolume);
             SoundEffectsMixerGroup.audioMixer.SetFloat("SoundEffects", soundEffectsVolume);
         }
+        
+        #endregion
+
 	}
 	
 }

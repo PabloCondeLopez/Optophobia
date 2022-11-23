@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Items {
 	public class Door : Interactable {
+		[Tooltip("Time to complete the door's opening")]
 		[SerializeField] private float OpeningLenght;
 
 		protected override void Interact() {

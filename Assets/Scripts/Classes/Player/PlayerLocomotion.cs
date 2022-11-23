@@ -2,17 +2,21 @@ using UnityEngine;
 using QuantumWeavers.Components.Core;
 
 namespace QuantumWeavers.Classes.Player {
-    [System.Serializable]
     public class PlayerLocomotion {
-
-        private Transform _playerPosition;
-        
+        // Position of the player
+        private readonly Transform _playerPosition;
+        // Rigidbody component
         private readonly Rigidbody _rb;
+        // Input handler component
         private readonly InputHandler _input;
-
-        private float _playerSpeed;
+        // Movement speed of the player
+        private readonly float _playerSpeed;
+        // Movement amount in the x axis of the player
         private float _xMovement;
+        // Movement amount in the y axis of the player
         private float _zMovement;
+
+        #region Constructor
 
         public PlayerLocomotion(Rigidbody rigidbody, InputHandler input, float speed, Transform playerPosition) {
             _rb = rigidbody;
@@ -20,11 +24,22 @@ namespace QuantumWeavers.Classes.Player {
             _playerPosition = playerPosition;
             _input = input;
         }
+        
+        #endregion
+
+        #region Update
 
         public void TickUpdate() {
             HandleMovement();
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Handles the player's movement
+        /// </summary>
         private void HandleMovement() {
             _xMovement = _input.GetMovement().x;
             _zMovement = _input.GetMovement().y;
@@ -44,5 +59,8 @@ namespace QuantumWeavers.Classes.Player {
                 _rb.MovePosition(_rb.position + _playerSpeed * Time.deltaTime * cameraRelativeMovement);
             }
         }
+
+        #endregion
+
     }
 }
