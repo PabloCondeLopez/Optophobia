@@ -11,20 +11,14 @@ namespace QuantumWeavers.Components.UI {
 		[SerializeField] private TextMeshProUGUI HUDText;
 		[Tooltip("Animation speed of the UI")]
 		[SerializeField] private float Speed = 2f;
-
-		// Name of the item
-		private string _itemName;
+		
 		// Initial position of the UI
 		private Vector3 _initialPosition;
 
 		#region Unity Events
 
 		private void OnEnable() {
-			StringBuilder hudText = new StringBuilder();
-			hudText.Append(_itemName + "\nPress E to take");
-			
 			_initialPosition = transform.position;
-			HUDText.text = hudText.ToString();
 			transform.DOLocalMove(new Vector3(0, 2f, 0), Speed).SetEase(Ease.OutCubic).SetLoops(-1, LoopType.Yoyo);
 		}
 
@@ -51,8 +45,7 @@ namespace QuantumWeavers.Components.UI {
 		/// Enables the item UI
 		/// </summary>
 		/// <param name="itemName">Name of the item which this UI is attached to</param>
-		public void Enable(string itemName) {
-			_itemName = itemName;
+		public void Enable() {
 			gameObject.SetActive(true);
 		}
 

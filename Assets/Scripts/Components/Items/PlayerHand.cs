@@ -21,7 +21,7 @@ namespace QuantumWeavers.Components.Items {
         // Previous interactable collider detected
         private Collider _previousInteractableCollider;
         [Tooltip("Item that the player is holding at the moment.")]
-        private ItemComponent _itemOnHand;
+        private TakeableItem _itemOnHand;
 
         #region Unity Events
 
@@ -42,7 +42,7 @@ namespace QuantumWeavers.Components.Items {
         /// Gets the current item
         /// </summary>
         /// <returns>The item hold on the hand</returns>
-        public ItemComponent GetItemOnHand() {
+        public TakeableItem GetItemOnHand() {
             return _itemOnHand;
         }
         
@@ -54,7 +54,7 @@ namespace QuantumWeavers.Components.Items {
         /// Replaces the item that the player is holding with the new item.
         /// </summary>
         /// <param name="newItem">Item that you want the player to hold.</param>
-        public void SetItemOnHand(ItemComponent newItem) {
+        public void SetItemOnHand(TakeableItem newItem) {
             _itemOnHand = newItem;
             _itemOnHand.AttachItem();
         }
@@ -69,18 +69,21 @@ namespace QuantumWeavers.Components.Items {
         private void SeekItems() {
             if(Physics.SphereCast(transform.position, ItemDetectionRadius, transform.forward, out RaycastHit hit, ItemDetectionRange, ItemMask)) {
                 ItemComponent item = hit.collider.GetComponent<ItemComponent>();
-                
+
                 if (_previousItemCollider != hit.collider) {
                     if (hit.collider) {
                         item.OutlineItem();
-                        item.HUD().Enable(item.ItemName());
+                        item.HUD().Enable();
                         _previousItemCollider = hit.collider;
                         return;
                     }
                 }
                 
                 if (_gameManager.Input.OnInteract()) {
-                    item.TakeObject();
+                    if(item.GetType() == typeof(TakeableItem))
+                        hit.collider.GetComponent<TakeableItem>().TakeObject();
+                    else if (item.GetType() == typeof(Button))
+                        hit.collider.GetComponent<Button>().PressButton();
                 }
             }
 
@@ -98,10 +101,10 @@ namespace QuantumWeavers.Components.Items {
         /// </summary>
         private void SeekInteractableObjects() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, InteractableDetectionRange, InteractableMask)) {
-                Interactable interactable = hit.collider.GetComponentInParent<Interactable>();
+                ObjectDoor interactable = hit.collider.GetComponentInParent<ObjectDoor>();
 
                 if (_previousInteractableCollider != hit.collider) {
-                    if (hit.collider) {
+                    if (hit.collider && interactable) {
                         interactable.OutlineInteractable();
                         _previousInteractableCollider = hit.collider;
                         return;

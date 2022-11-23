@@ -1,33 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace QuantumWeavers.Components.Items {
 	public abstract class Interactable: MonoBehaviour {
-		[Tooltip("Item which is needed to use this interactable")]
-		[SerializeField] protected ItemComponent ItemToUse;
-		
 		// Checks if the interactable was already used
 		protected bool InteractableUsed;
 		// Outline effect applied to the object
 		private OutlineEffect _outline;
 
 		#region Unity Events
-		
-		protected virtual void Start() {
+
+		private void OnEnable() {
 			_outline = GetComponentInChildren<OutlineEffect>();
-			
-			ItemToUse.Used += Interact;
-		}
-
-		#endregion
-
-		#region Getters
-		
-		/// <summary>
-		/// Gets the item which is needed to use this interactable
-		/// </summary>
-		/// <returns>An item component necessary to use this interactable</returns>
-		public ItemComponent GetItemToUse() {
-			return ItemToUse;
 		}
 
 		#endregion
@@ -57,5 +41,6 @@ namespace QuantumWeavers.Components.Items {
 		}
 
 		#endregion
+		
 	}
 }
