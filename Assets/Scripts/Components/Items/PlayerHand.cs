@@ -68,7 +68,7 @@ namespace QuantumWeavers.Components.Items {
         /// </summary>
         private void SeekItems() {
             if(Physics.SphereCast(transform.position, ItemDetectionRadius, transform.forward, out RaycastHit hit, ItemDetectionRange, ItemMask)) {
-                ItemComponent item = hit.collider.GetComponent<ItemComponent>();
+                ItemComponent item = hit.collider.GetComponentInParent<ItemComponent>();
 
                 if (_previousItemCollider != hit.collider) {
                     if (hit.collider) {
@@ -81,14 +81,14 @@ namespace QuantumWeavers.Components.Items {
                 
                 if (_gameManager.Input.OnInteract()) {
                     if(item.GetType() == typeof(TakeableItem))
-                        hit.collider.GetComponent<TakeableItem>().TakeObject();
+                        hit.collider.GetComponentInParent<TakeableItem>().TakeObject();
                     else if (item.GetType() == typeof(Button))
-                        hit.collider.GetComponent<Button>().PressButton();
+                        hit.collider.GetComponentInParent<Button>().PressButton();
                 }
             }
 
             if(!hit.collider && _previousItemCollider) {
-                ItemComponent previousItem = _previousItemCollider.GetComponent<ItemComponent>();
+                ItemComponent previousItem = _previousItemCollider.GetComponentInParent<ItemComponent>();
                 
                 previousItem.RemoveOutline();
                 previousItem.HUD().Disable();

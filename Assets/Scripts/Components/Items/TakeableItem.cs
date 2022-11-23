@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using QuantumWeavers.Classes.Items;
-using QuantumWeavers.Components.UI;
 using QuantumWeavers.Components.Sound;
 
 namespace QuantumWeavers.Components.Items
@@ -36,6 +34,7 @@ namespace QuantumWeavers.Components.Items
             if (_playerHand.GetItemOnHand()) {
                 _playerHand.GetItemOnHand().transform.parent = transform.parent;
                 _playerHand.GetItemOnHand().transform.position = transform.position;
+                _playerHand.GetItemOnHand().transform.rotation = Quaternion.Euler(Vector3.zero);
             }
 
             _playerHand.SetItemOnHand(this);
@@ -50,7 +49,8 @@ namespace QuantumWeavers.Components.Items
         /// </summary>
         public void AttachItem() {
             transform.parent = _playerHand.transform;
-            transform.localPosition = Item.PosOfAttachment;
+            transform.localPosition = Item.AttachmentPosition;
+            transform.localRotation = Quaternion.Euler(Item.AttachmentRotation);
         }
 
         /// <summary>

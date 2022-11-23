@@ -9,8 +9,12 @@ namespace QuantumWeavers.Components.UI {
 		[SerializeField] private Camera PlayerCamera;
 		[Tooltip("Text of the UI")]
 		[SerializeField] private TextMeshProUGUI HUDText;
+		[Tooltip("Movement type of the HUD")]
+		[SerializeField] private Ease MovementType;
 		[Tooltip("Animation speed of the UI")]
 		[SerializeField] private float Speed = 2f;
+		[Tooltip("Distance which the UI will jump")] 
+		[SerializeField] private float JumpHeight;
 		
 		// Initial position of the UI
 		private Vector3 _initialPosition;
@@ -18,13 +22,13 @@ namespace QuantumWeavers.Components.UI {
 		#region Unity Events
 
 		private void OnEnable() {
-			_initialPosition = transform.position;
-			transform.DOLocalMove(new Vector3(0, 2f, 0), Speed).SetEase(Ease.OutCubic).SetLoops(-1, LoopType.Yoyo);
+			_initialPosition = transform.localPosition;
+			transform.DOLocalMove(new Vector3(0, JumpHeight, 0), Speed).SetEase(MovementType).SetLoops(-1, LoopType.Yoyo);
 		}
 
 		private void OnDisable() {
 			transform.DOPause();
-			transform.position = _initialPosition;
+			transform.localPosition = _initialPosition;
 		}
 
 		private void Update() {
