@@ -2630,13 +2630,13 @@ MonoBehaviour:
   MusicMixerGroup: {fileID: 3809908761696412905, guid: 4ba5e693e4e3f674988b8b618a05e2b7, type: 2}
   SoundEffectsMixerGroup: {fileID: -8834444972636667714, guid: 4ba5e693e4e3f674988b8b618a05e2b7, type: 2}
   Sounds:
-  - AudioType: 0
-    Source: {fileID: 0}
-    ClipName: Button
+  - ClipName: Button
+    AudioType: 0
     AudioClip: {fileID: 8300000, guid: adbd66325d5fc6641a81130c76e4cb3e, type: 3}
     IsLoop: 0
     PlayOnAwake: 0
     Volume: 0.5
+    Source: {fileID: 0}
 --- !u!4 &1196148476
 Transform:
   m_ObjectHideFlags: 0
@@ -3851,9 +3851,9 @@ MonoBehaviour:
   GeneralSlider: {fileID: 1284874879}
   MusicSlider: {fileID: 1354628142}
   EffectsSlider: {fileID: 857221855}
-  _generalVolumeText: {fileID: 934628253}
-  _musicText: {fileID: 20265454}
-  _soundEffectsText: {fileID: 1560291331}
+  GeneralVolumeText: {fileID: 934628253}
+  MusicText: {fileID: 20265454}
+  SoundEffectsText: {fileID: 1560291331}
 --- !u!1 &1763836645
 GameObject:
   m_ObjectHideFlags: 0

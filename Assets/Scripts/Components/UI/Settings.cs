@@ -94,8 +94,6 @@ namespace QuantumWeavers.Components.UI
         protected void SetVolume(float volume)
         {
             AudioMixer.SetFloat("Volume", volume * 50 - 40);
-            Debug.Log(volume);
-            Debug.Log(volume * 50 - 40);
             PlayerPrefs.SetFloat("GeneralVolume", volume * 50 - 40);
         }
         /// <summary>
