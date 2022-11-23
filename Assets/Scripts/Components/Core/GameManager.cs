@@ -31,7 +31,18 @@ namespace QuantumWeavers.Components.Core {
         // Determines the state of the game
         private GameStates _state;
 
+
         #region Unity Events
+
+        
+        /// <summary>
+        /// Gets the input of the game
+        /// </summary>
+        /// <returns>Input of the game</returns>
+        public InputHandler GetInput() {
+            return Input;
+        }
+
 
         private void Update() {
             GamePaused = _state == GameStates.Pause;

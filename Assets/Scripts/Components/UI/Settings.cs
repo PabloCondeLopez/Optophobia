@@ -9,12 +9,6 @@ namespace QuantumWeavers.Components.UI
 {
     public class Settings : MonoBehaviour
     {
-        [Tooltip("Value of the general volume. From 10 to -40.")]
-        public float GeneralVolume;
-        [Tooltip("Value of the music volume. From 10 to -40.")]
-        public float MusicVolume;
-        [Tooltip("Value of the sound effects volume. From 10 to -40.")]
-        public float SoundEffectsVolume;
         [Tooltip("AudioMixer.")]
         public AudioMixer AudioMixer;
 
@@ -43,6 +37,7 @@ namespace QuantumWeavers.Components.UI
         private void Start()
         {
             StartSounds();
+            
         }
         
         private void Update()
@@ -56,28 +51,26 @@ namespace QuantumWeavers.Components.UI
 
         /// <summary>
         /// It initializes all the volumes, the sliders and the texts.
+        /// To a preset value if the haven't been changed previously.
+        /// Or to the saved values if they have been changed.
         /// </summary>
-        public void StartSounds()
+        protected void StartSounds()
         {
-            AudioMixer.SetFloat("Volume", GeneralVolume);
-            SoundManager.Instance.UpdateMixerVolume(MusicVolume, SoundEffectsVolume);
+            AudioMixer.SetFloat("Volume", PlayerPrefs.GetFloat("GeneralVolume"));
+            AudioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));
+            AudioMixer.SetFloat("SoundEffects", PlayerPrefs.GetFloat("SoundEffectsVolume"));
 
-            GeneralSlider.value = (GeneralVolume + 40 * 2) / 100;
-            MusicSlider.value = (MusicVolume + 40 * 2) / 100;
-            EffectsSlider.value = (SoundEffectsVolume + 40 * 2) / 100;
+            GeneralSlider.value = (PlayerPrefs.GetFloat("GeneralVolume") + 40) / 50;
+            MusicSlider.value = (PlayerPrefs.GetFloat("MusicVolume") + 40) / 50;
+            EffectsSlider.value = (PlayerPrefs.GetFloat("SoundEffectsVolume") + 40) / 50;
 
             UpdateText();
         }
 
         /// <summary>
-        /// Calls for UpdateText() so the text always reflects the value of the volumes.
-        /// </summary>
-        
-
-        /// <summary>
         /// Updates the texts so the reflect the value of the volumes.
         /// </summary>
-        private void UpdateText()
+        protected void UpdateText()
         {
             GeneralVolumeText.text = Mathf.FloorToInt((GeneralSlider.value * 100)).ToString();
             MusicText.text = Mathf.FloorToInt((MusicSlider.value * 100)).ToString();
@@ -88,7 +81,7 @@ namespace QuantumWeavers.Components.UI
         /// Changes the screen mode.
         /// </summary>
         /// <param name="fullScreen">Wether the screen is on full screen mode.</param>
-        public void SetFullScreen(bool fullScreen)
+        protected void SetFullScreen(bool fullScreen)
         {
             IsFullScreen = fullScreen;
             SoundManager.Instance.Play("Button");
@@ -98,32 +91,39 @@ namespace QuantumWeavers.Components.UI
         /// 
         /// </summary>
         /// <param name="volume">New value of the general volume.</param>
-        public void SetVolume(float volume)
+        protected void SetVolume(float volume)
         {
-            GeneralVolume = volume * 100 / 2 - 40;
-            AudioMixer.SetFloat("Volume", GeneralVolume);
+            AudioMixer.SetFloat("Volume", volume * 50 - 40);
+            Debug.Log(volume);
+            Debug.Log(volume * 50 - 40);
+            PlayerPrefs.SetFloat("GeneralVolume", volume * 50 - 40);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="volume">New value of the music volume.</param>
-        public void SetMusicVolume(float volume)
+        protected void SetMusicVolume(float volume)
         {
-            MusicVolume = volume * 100 / 2 - 40;
-            SoundManager.Instance.UpdateMixerVolume(MusicVolume, SoundEffectsVolume);
+            AudioMixer.SetFloat("Music", volume * 50 - 40);
+            PlayerPrefs.SetFloat("MusicVolume", volume * 50 - 40);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="volume">New value of the sound effects volume.</param>
-        public void SetSoundEffectsVolume(float volume)
+        protected void SetSoundEffectsVolume(float volume)
         {
-            SoundEffectsVolume = volume * 100 / 2 - 40;
-            SoundManager.Instance.UpdateMixerVolume(MusicVolume, SoundEffectsVolume);
+            AudioMixer.SetFloat("SoundEffects", volume * 50 - 40);
+            PlayerPrefs.SetFloat("SoundEffectsVolume", volume * 50 - 40);
         }
+
 
         #endregion
     }
+
+        
 }
+
+
 
 

@@ -8,6 +8,8 @@ namespace QuantumWeavers.Components.Sound {
 		[Tooltip("Instance of SoundManager, so it can be accessed from other classes.")]
         public static SoundManager Instance;
 
+        [Tooltip("Group of general sounds. SerializeField: you can change it from the editor.")]
+        [SerializeField] private AudioMixerGroup GeneralMixerGroup;
         [Tooltip("Group of Music type sounds. SerializeField: you can change it from the editor.")]
         [SerializeField] private AudioMixerGroup MusicMixerGroup;
         [Tooltip("Group of SoundEffect type sounds. SerializeField: you can change it from the editor.")]
@@ -61,6 +63,34 @@ namespace QuantumWeavers.Components.Sound {
         #region Methods
 
         /// <summary>
+        /// It checks if the settings of the mixers have been changed and if so, it assigns it values. 
+        /// If not, it initializes the mixers volume.
+        /// </summary>
+        private void Start()
+        {
+            if (PlayerPrefs.HasKey("GeneralVolume") &&
+               PlayerPrefs.HasKey("SoundEffectsVolume") &&
+               PlayerPrefs.HasKey("MusicVolume"))
+               LoadVolume();
+            else
+            {
+                PlayerPrefs.SetFloat("GeneralVolume", 0);
+                PlayerPrefs.SetFloat("SoundEffectsVolume", 0);
+                PlayerPrefs.SetFloat("MusicVolume", 0);
+            }
+        }
+
+        /// <summary>
+        /// Loads the volume of the mixers.
+        /// </summary>
+        private void LoadVolume()
+        {
+            GeneralMixerGroup.audioMixer.SetFloat("Volume", PlayerPrefs.GetFloat("GeneralVolume"));
+            SoundEffectsMixerGroup.audioMixer.SetFloat("SoundEffects", PlayerPrefs.GetFloat("SoundEffectsVolume"));
+            MusicMixerGroup.audioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));
+        }
+
+        /// <summary>
         /// Finds the clip named "clipname" and plays it if it exists.
         /// </summary>
         /// <param name="clipName">Name of the clip to Play.</param>
@@ -88,17 +118,8 @@ namespace QuantumWeavers.Components.Sound {
             s.Source.Stop();
         }
 
-        /// <summary>
-        /// Updates the volume in settings.
-        /// </summary>
-        public void UpdateMixerVolume(float musicVolume, float soundEffectsVolume)
-        {
-            MusicMixerGroup.audioMixer.SetFloat("Music", musicVolume);
-            SoundEffectsMixerGroup.audioMixer.SetFloat("SoundEffects", soundEffectsVolume);
-        }
-        
-        #endregion
 
-	}
-	
+        #endregion
+    }
+
 }

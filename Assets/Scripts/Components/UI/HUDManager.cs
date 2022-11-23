@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using QuantumWeavers.Components.Core;
 
@@ -17,9 +18,13 @@ namespace QuantumWeavers.Components.UI {
 		[Header("UI Elements")]
 		[Tooltip("UI of the pause menu")]
 		[SerializeField] private GameObject PauseMenu;
+
 		[Header("Debug")]
 		[Tooltip("True if the screen goes black when the eyes are closed. False otherwise")]
 		[SerializeField] private bool SimulateClosedEyes;
+
+		public event Action OnPauseMenuOpen;
+
 
 		// GameManager instance
 		private GameManager _gameManager;
@@ -32,6 +37,9 @@ namespace QuantumWeavers.Components.UI {
 
 		private void Update() {
 			PauseMenu.SetActive(_gameManager.GamePaused);
+			OnPauseMenuOpen?.Invoke();
+
+			
 			HandleEyesSprite();
 		}
 		
