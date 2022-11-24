@@ -41,7 +41,7 @@ namespace QuantumWeavers.Components.Items
             HUD().Disable();
             RemoveOutline();
 
-            SoundManager.Instance.Play("Button");
+            SoundManager.Instance.Play("TakeObject");
         }
 
         /// <summary>

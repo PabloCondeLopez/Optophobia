@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using QuantumWeavers.Components.Sound;
 
 namespace QuantumWeavers.Components.Items {
     public class Button : ItemComponent {
@@ -12,6 +13,7 @@ namespace QuantumWeavers.Components.Items {
         /// </summary>
         public void PressButton() {
             Pressed?.Invoke();
+            SoundManager.Instance.Play("Button");
         }
     }
 }

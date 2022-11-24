@@ -3552,6 +3552,20 @@ MonoBehaviour:
     PlayOnAwake: 0
     Volume: 0.5
     Source: {fileID: 0}
+  - ClipName: Collision
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 6996421c729d71d459e1a9e86ab4b38e, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: TakeObject
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: c0735642c0c6af748b061d73ff9bba19, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
 --- !u!4 &1196148476
 Transform:
   m_ObjectHideFlags: 0
@@ -4920,7 +4934,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioMixer: {fileID: 24100000, guid: 4ba5e693e4e3f674988b8b618a05e2b7, type: 2}
-  IsFullScreen: 1
   GeneralSlider: {fileID: 1284874879}
   MusicSlider: {fileID: 1354628142}
   EffectsSlider: {fileID: 857221855}

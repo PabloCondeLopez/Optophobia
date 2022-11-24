@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using QuantumWeavers.Components.Player;
+using Cinemachine;
 
 namespace QuantumWeavers.Components.Menus {
     public class Pause : MonoBehaviour
@@ -14,9 +15,15 @@ namespace QuantumWeavers.Components.Menus {
         [SerializeField] private Slider MouseSensitivitySlider;
         [Tooltip("Text that shows the sensibility.")]
         [SerializeField] private TextMeshProUGUI MouseSensitivityText;
+        [Tooltip("Text that shows the FOV.")]
+        [SerializeField] private TextMeshProUGUI FOVText;
         [SerializeField] private PlayerManager Player;
         [Tooltip("Range of sensibility the player can select from.")]
         private readonly Vector2 _rangeOfSensitivity = new Vector2(1, 50);
+        [Tooltip("Range of FOV the player can select from.")]
+        private readonly Vector2 _rangeOfFOV = new Vector2(80, 120);
+
+        [SerializeField] private CinemachineVirtualCamera camera;
 
         #endregion
 
@@ -46,10 +53,20 @@ namespace QuantumWeavers.Components.Menus {
         /// <summary>
         /// Its sets mouse sensibility to a value equivalent to the value of the slider transformed to de _rangeOfSensitivity. 
         /// </summary>
-        public void OnSlider()
+        public void OnSensitivitySlider()
         {
             Player.SetMouseSensitivity(Mathf.FloorToInt(MouseSensitivitySlider.value * _rangeOfSensitivity.y / _rangeOfSensitivity.x));
             MouseSensitivityText.text = Player.GetMouseSensitivity().ToString();
+        }
+
+        /// <summary>
+        /// Its sets the FOV to a value equivalent to the value of the slider transformed to de _rangeOfFOV.
+        /// </summary>
+        /// <param name="value"></param>
+        public void OnFOVSlider(float value)
+        {
+            camera.m_Lens.FieldOfView = Mathf.FloorToInt(_rangeOfFOV.x + (_rangeOfFOV.y-_rangeOfFOV.x) * value);
+            FOVText.text = camera.m_Lens.FieldOfView.ToString();
         }
         
         #endregion
