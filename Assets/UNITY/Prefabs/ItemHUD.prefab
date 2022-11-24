@@ -66,9 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[ITEM]
+  m_text: '<b><color="yellow">[ITEM]</color></b>
 
-    Press E to [INTERACTION]'
+    Press <b><color="red">E</color></b>
+    to [ACTION]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -252,7 +253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.3}
+  m_AnchoredPosition: {x: 0, y: 0.2999878}
   m_SizeDelta: {x: 15, y: 7.859}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3042106764924300503
