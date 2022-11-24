@@ -38,7 +38,20 @@ namespace QuantumWeavers.Components.Player {
         private void OnCollisionEnter(Collision collision) {
             SoundManager.Instance.Play("Button");
         }
-        
+
+        #endregion
+
+        #region Setters
+        public float GetMouseSensitivity()
+        {
+            return MouseSensitivity;
+        }
+
+        public void SetMouseSensitivity(float value)
+        {
+            MouseSensitivity = value;
+        }
+
         #endregion
     }
 }
