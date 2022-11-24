@@ -3,25 +3,30 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Items {
     public class PlayerHand : MonoBehaviour {
-        [Tooltip("Layer applied to the items")]
+
+        #region _privateVariables
+
+        [Tooltip("Layer applied to the items.")]
         [SerializeField] private LayerMask ItemMask;
-        [Tooltip("Radius where the items are going to be detected")]
+        [Tooltip("Radius where the items are going to be detected.")]
         [SerializeField] private float ItemDetectionRadius = 0.5f;
-        [Tooltip("Maximum range where the items are going to be detected")]
+        [Tooltip("Maximum range where the items are going to be detected.")]
         [SerializeField] private float ItemDetectionRange = 1f;
-        [Tooltip("Layer applied to the interactable objects")]
+        [Tooltip("Layer applied to the interactable objects.")]
         [SerializeField] private LayerMask InteractableMask;
-        [Tooltip("Maximum range where the interactable objects are going to be detected")]
+        [Tooltip("Maximum range where the interactable objects are going to be detected.")]
         [SerializeField] private float InteractableDetectionRange = 1f;
-        
-        // GameManager instance
+
+        [Tooltip("GameManager instance.")]
         private GameManager _gameManager;
-        // Previous item collider detected
+        [Tooltip("Previous item collider detected.")]
         private Collider _previousItemCollider;
-        // Previous interactable collider detected
+        [Tooltip("Previous interactable collider detected.")]
         private Collider _previousInteractableCollider;
         [Tooltip("Item that the player is holding at the moment.")]
         private TakeableItem _itemOnHand;
+
+        #endregion
 
         #region Unity Events
 

@@ -4,7 +4,10 @@ using QuantumWeavers.Components.Core;
 
 namespace QuantumWeavers.Components.UI {
 	public class HUDManager : MonoBehaviour {
-		[Header("Images")]
+
+        #region _privateVariables
+
+        [Header("Images")]
 		[Tooltip("Image of the eyes state")]
 		[SerializeField] private Image EyesIndicator;
 		[Tooltip("Screen shown when the player closes his eyes")]
@@ -21,9 +24,11 @@ namespace QuantumWeavers.Components.UI {
 		[Header("Debug")]
 		[Tooltip("True if the screen goes black when the eyes are closed. False otherwise")]
 		[SerializeField] private bool SimulateClosedEyes;
-		
-		// GameManager instance
+
+		[Tooltip("GameManager instance.")]
 		private GameManager _gameManager;
+
+		#endregion
 
 		#region Unity Methods
 
@@ -41,7 +46,7 @@ namespace QuantumWeavers.Components.UI {
 		#region Methods
 
 		/// <summary>
-		/// Handles the behaviour of the eyes indicator
+		/// Handles the behaviour of the eyes indicator.
 		/// </summary>
 		private void HandleEyesSprite() {
 			EyesIndicator.sprite = _gameManager.EyesOpen ? EyesOpenSprite : EyesClosedSprite;
@@ -54,7 +59,7 @@ namespace QuantumWeavers.Components.UI {
 		}
 
 		/// <summary>
-		/// Handles the pause menu close button
+		/// Handles the pause menu close button.
 		/// </summary>
 		public void OnCloseButton()
 		{

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Items {
 	public class ObjectDoor : Interactable {
+
 		[Tooltip("Item which is needed to use this interactable")]
 		[SerializeField] protected TakeableItem ItemToUse;
 		[Tooltip("Time to complete the door's opening")]
@@ -31,6 +32,9 @@ namespace QuantumWeavers.Components.Items {
 		
 		#region Methods
 
+		/// <summary>
+		/// It rotates the door from it's hinges.
+		/// </summary>
 		protected override void Interact() {
 			transform.DORotate(new Vector3(0, -90, 0), OpeningLenght).SetEase(Ease.InOutFlash);
 			InteractableUsed = true;

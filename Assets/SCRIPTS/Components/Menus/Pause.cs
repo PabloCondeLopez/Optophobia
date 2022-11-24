@@ -6,15 +6,19 @@ using QuantumWeavers.Components.Player;
 namespace QuantumWeavers.Components.Menus {
     public class Pause : MonoBehaviour
     {
+        #region Variables
+
         [Tooltip("Default settings.")]
-        public Button DefaultSettingsButton;
+        [SerializeField] private Button DefaultSettingsButton;
         [Tooltip("Slider that controls the mouse sensitivity.")]
-        public Slider MouseSensitivitySlider;
+        [SerializeField] private Slider MouseSensitivitySlider;
         [Tooltip("Text that shows the sensibility.")]
-        public TextMeshProUGUI MouseSensitivityText;
-        public PlayerManager Player;
+        [SerializeField] private TextMeshProUGUI MouseSensitivityText;
+        [SerializeField] private PlayerManager Player;
         [Tooltip("Range of sensibility the player can select from.")]
         private readonly Vector2 _rangeOfSensitivity = new Vector2(1, 50);
+
+        #endregion
 
         #region Unity Events
 

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 namespace QuantumWeavers.Components.Menus {
     public class Settings : MonoBehaviour
     {
+
+        #region PublicVariables
+
         [Tooltip("AudioMixer.")]
         public AudioMixer AudioMixer;
 
@@ -17,12 +20,18 @@ namespace QuantumWeavers.Components.Menus {
         [Tooltip("Slider to change the sound effects volume.")]
         public Slider EffectsSlider;
 
+        #endregion
+
+        #region _privateVariables
+
         [Tooltip("Text that shows the general volume value.")]
         [SerializeField] private TextMeshProUGUI GeneralVolumeText;
         [Tooltip("Text that shows the music volume value.")]
         [SerializeField] private TextMeshProUGUI MusicText;
         [Tooltip("Text that shows the sound effects volume value.")]
         [SerializeField] private TextMeshProUGUI SoundEffectsText;
+
+        #endregion
 
         #region Unity Methods
 

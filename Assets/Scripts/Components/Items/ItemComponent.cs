@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace QuantumWeavers.Components.Items {
     public abstract class ItemComponent : MonoBehaviour {
-        [FormerlySerializedAs("Item")]
+
         [Tooltip("Item information.")]
         [SerializeField] protected Item ItemInfo;
-        
-        // Outline effect of the item
+
+        [Tooltip("Outline effect of the item.")]
         private OutlineEffect _outline;
-        // HUD of the item
+        [Tooltip("HUD of the item.")]
         private ItemHUD _hud;
         
         #region Unity Events

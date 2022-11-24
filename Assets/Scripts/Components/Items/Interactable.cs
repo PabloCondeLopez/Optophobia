@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Items {
 	public abstract class Interactable: MonoBehaviour {
-		// Checks if the interactable was already used
+
+		[Tooltip("Checks if the interactable was already used.")]
 		protected bool InteractableUsed;
-		// Outline effect applied to the object
+		[Tooltip("Outline effect applied to the object.")]
 		private OutlineEffect _outline;
 
 		#region Unity Events

@@ -3,12 +3,16 @@ using UnityEngine;
 namespace QuantumWeavers.Components.Core {
     public class InputHandler : MonoBehaviour {
 
-        // Player input actions. Defined outside the script
+        #region _privateVariables
+
+        [Tooltip("Player input actions. Defined outside the script.")]
         private InputActions _input;
-        // Camera look vector
+        [Tooltip("Camera look vector.")] 
         private Vector2 _look;
-        // Movement vector
+        [Tooltip("Movement vector.")]
         private Vector2 _movement;
+
+        #endregion
 
         #region Initialization
 
@@ -24,6 +28,9 @@ namespace QuantumWeavers.Components.Core {
 
         #region Unity Events
 
+        /// <summary>
+        /// Calls for OnLook() and OnMove().
+        /// </summary>
         private void Update() {
             OnLook();
             OnMove();

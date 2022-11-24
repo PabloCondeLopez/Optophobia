@@ -5,8 +5,13 @@ using QuantumWeavers.Shared;
 
 namespace QuantumWeavers.Components.Sound {
 	public class SoundManager : MonoBehaviour {
-		[Tooltip("Instance of SoundManager, so it can be accessed from other classes.")]
+
+        #region Instance
+        [Tooltip("Instance of SoundManager, so it can be accessed from other classes.")]
         public static SoundManager Instance;
+        #endregion
+
+        #region _privateVariables
 
         [Tooltip("Group of general sounds. SerializeField: you can change it from the editor.")]
         [SerializeField] private AudioMixerGroup GeneralMixerGroup;
@@ -16,6 +21,8 @@ namespace QuantumWeavers.Components.Sound {
         [SerializeField] private AudioMixerGroup SoundEffectsMixerGroup;
         [Tooltip("Array of sounds. SerializeField: you can change it from the editor.")] 
         [SerializeField] private Classes.Sound.Sound[] Sounds;
+
+        #endregion
 
         #region Unity Events
 

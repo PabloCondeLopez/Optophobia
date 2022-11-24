@@ -3,21 +3,25 @@ using QuantumWeavers.Components.Core;
 
 namespace QuantumWeavers.Classes.Player {
     public class PlayerLocomotion {
-        // Position of the player
+
+        #region _privateVariables
+
+        [Tooltip("Position of the player.")]
         private readonly Transform _playerPosition;
-        // Rigidbody component
+        [Tooltip("Rigidbody component.")]
         private readonly Rigidbody _rb;
-        // Input handler component
+        [Tooltip("Input handler component.")]
         private readonly InputHandler _input;
-        // Movement speed of the player
+        [Tooltip("Movement speed of the player.")]
         private readonly float _playerSpeed;
-        // Movement amount in the x axis of the player
+        [Tooltip("Movement amount in the x axis of the player")]
         private float _xMovement;
-        // Movement amount in the y axis of the player
+        [Tooltip("Movement amount in the y axis of the player")]
         private float _zMovement;
 
-        #region Constructor
+        #endregion
 
+        #region Constructor
         public PlayerLocomotion(Rigidbody rigidbody, InputHandler input, float speed, Transform playerPosition) {
             _rb = rigidbody;
             _playerSpeed = speed;
@@ -29,6 +33,9 @@ namespace QuantumWeavers.Classes.Player {
 
         #region Update
 
+        /// <summary>
+        /// Calls for HandleMovement().
+        /// </summary>
         public void TickUpdate() {
             HandleMovement();
         }

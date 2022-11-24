@@ -6,10 +6,10 @@ namespace QuantumWeavers.Components.Items
 {
     public class TakeableItem : ItemComponent
     {
-        //Hand that holds the item. SerializeField: you can change it from the editor
+        [Tooltip("Hand that holds the item. SerializeField: you can change it from the editor.")]
         private PlayerHand _playerHand;
-        
-        // Event used to use the item
+
+        [Tooltip("Event used to use the item.")]
         public event Action Used;
 
         #region Unity Events

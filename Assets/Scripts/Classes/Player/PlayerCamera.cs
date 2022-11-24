@@ -3,22 +3,34 @@ using UnityEngine;
 
 namespace QuantumWeavers.Components.Player {
 	public class PlayerCamera {
-		// Position of the player
+
+        #region _privateVariables
+
+        [Tooltip("Position of the player.")]
 		private readonly Transform _player;
-		// Position ot the camera
+		[Tooltip("Position of the camera.")]
 		private readonly Transform _camera;
-		// Sensitivity of the camera movement
+		[Tooltip("Sensibility of the camera movement.")]
 		private readonly float _mouseSensitivity;
-		// Input variable
+		[Tooltip("Input variable.")]
 		private readonly InputHandler _input;
-		// Rotation of the x axis
+		[Tooltip("Rotation of the x axis")]
 		private float _xRotation;
-		// Rotation of the y axis
+		[Tooltip("Rotation of the y axis")]
 		private float _yRotation;
 
-		#region Constructor
+        #endregion
 
-		public PlayerCamera(Transform playerTransform, Transform cameraTransform, InputHandler input, float mouseSensitivity) {
+        #region Constructor
+
+        /// <summary>
+        /// Player camera constructor.
+        /// </summary>
+        /// <param name="playerTransform">Position of the player.</param>
+        /// <param name="cameraTransform">Position of the camara.</param>
+        /// <param name="input">Input variable.</param>
+        /// <param name="mouseSensitivity">Sensitivity of the mouse.</param>
+        public PlayerCamera(Transform playerTransform, Transform cameraTransform, InputHandler input, float mouseSensitivity) {
 			_player = playerTransform;
 			_camera = cameraTransform;
 			_input = input;
@@ -28,7 +40,9 @@ namespace QuantumWeavers.Components.Player {
 		#endregion
 
 		#region Update
-
+		/// <summary>
+		/// Calls for Look().
+		/// </summary>
 		public void TickUpdate() {
 			Look();
 		}
@@ -38,7 +52,7 @@ namespace QuantumWeavers.Components.Player {
 		#region Methods
 
 		/// <summary>
-		/// Handles the camera rotation
+		/// Handles the camera rotation.
 		/// </summary>
 		private void Look() {
 			float mouseX = _input.GetLook().x * _mouseSensitivity * Time.deltaTime;

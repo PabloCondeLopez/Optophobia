@@ -19,21 +19,30 @@ namespace QuantumWeavers.Components.Core {
             
             DontDestroyOnLoad(this);
         }
-        
-        #endregion
-        
-        // Input handler component
-        public InputHandler Input { get; private set; }
-        // Checks if the eyes are currently open
-        public bool EyesOpen { get; private set; }
-        // Checks if the game is paused
-        public bool GamePaused { get; private set; }
-        // Determines the state of the game
-        private GameStates _state;
 
+        #endregion
+
+        #region Properties
+
+        [Tooltip("Input handler component.")]
+        public InputHandler Input { get; private set; }
+        [Tooltip("Checks if the eyes are currently open.")]
+        public bool EyesOpen { get; private set; }
+        [Tooltip("Checks if the game is paused.")]
+        public bool GamePaused { get; private set; }
+
+        #endregion
+
+        #region _privateVariables
+        [Tooltip("Determines the state of the game.")]
+        private GameStates _state;
+        #endregion
 
         #region Unity Events
-        
+
+        /// <summary>
+        /// Handles the states of the game and the eyes handler.
+        /// </summary>
         private void Update() {
             GamePaused = _state == GameStates.Pause;
             
