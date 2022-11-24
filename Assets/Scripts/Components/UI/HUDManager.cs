@@ -28,11 +28,20 @@ namespace QuantumWeavers.Components.UI {
 		[Tooltip("GameManager instance.")]
 		private GameManager _gameManager;
 
-		#endregion
+        #endregion
 
-		#region Unity Methods
+        #region Setters
 
-		private void Start() {
+		public void setSimulateClosedEyes(bool active)
+        {
+			SimulateClosedEyes = active;
+        }
+
+        #endregion
+
+        #region Unity Methods
+
+        private void Start() {
 			_gameManager = GameManager.Instance;
 		}
 
