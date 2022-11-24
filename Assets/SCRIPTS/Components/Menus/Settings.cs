@@ -1,12 +1,10 @@
 using QuantumWeavers.Components.Sound;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace QuantumWeavers.Components.UI
-{
+namespace QuantumWeavers.Components.Menus {
     public class Settings : MonoBehaviour
     {
         [Tooltip("AudioMixer.")]
@@ -115,8 +113,6 @@ namespace QuantumWeavers.Components.UI
 
         #endregion
     }
-
-        
 }
 
 

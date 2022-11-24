@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using QuantumWeavers.Components.Sound;
 
-namespace QuantumWeavers.Components.UI {
+namespace QuantumWeavers.Components.Menus {
     public class Menu : MonoBehaviour
     {
         #region Methods
@@ -40,6 +40,5 @@ namespace QuantumWeavers.Components.UI {
         }
         
         #endregion
-
     }
 }

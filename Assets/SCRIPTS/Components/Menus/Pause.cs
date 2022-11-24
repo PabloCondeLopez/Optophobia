@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using QuantumWeavers.Components.Player;
 
-namespace QuantumWeavers.Components.UI
-{
-   
+namespace QuantumWeavers.Components.Menus {
     public class Pause : MonoBehaviour
     {
         [Tooltip("Default settings.")]
@@ -19,7 +14,9 @@ namespace QuantumWeavers.Components.UI
         public TextMeshProUGUI MouseSensitivityText;
         public PlayerManager Player;
         [Tooltip("Range of sensibility the player can select from.")]
-        private Vector2 _rangeOfSensitivity = new Vector2(1, 50);
+        private readonly Vector2 _rangeOfSensitivity = new Vector2(1, 50);
+
+        #region Unity Events
 
         /// <summary>
         /// It initializes the MouseSensitivity sliders and text according to the initial MouseSesintivity of the Player.
@@ -29,6 +26,10 @@ namespace QuantumWeavers.Components.UI
             MouseSensitivitySlider.value = Player.GetMouseSensitivity() * _rangeOfSensitivity.x / _rangeOfSensitivity.y;
             MouseSensitivityText.text = Player.GetMouseSensitivity().ToString();
         }
+        
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Function called when the menu is opened.
@@ -46,9 +47,10 @@ namespace QuantumWeavers.Components.UI
             Player.SetMouseSensitivity(Mathf.FloorToInt(MouseSensitivitySlider.value * _rangeOfSensitivity.y / _rangeOfSensitivity.x));
             MouseSensitivityText.text = Player.GetMouseSensitivity().ToString();
         }
+        
+        #endregion
+        
 
     }
-
-    
 }
 
