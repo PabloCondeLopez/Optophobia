@@ -49,8 +49,8 @@ namespace QuantumWeavers.Components.Items
         /// </summary>
         public void AttachItem() {
             transform.parent = _playerHand.transform;
-            transform.localPosition = Item.AttachmentPosition;
-            transform.localRotation = Quaternion.Euler(Item.AttachmentRotation);
+            transform.localPosition = ItemInfo.AttachmentPosition;
+            transform.localRotation = Quaternion.Euler(ItemInfo.AttachmentRotation);
         }
 
         /// <summary>

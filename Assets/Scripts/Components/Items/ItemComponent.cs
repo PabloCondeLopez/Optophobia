@@ -1,11 +1,13 @@
 using QuantumWeavers.Classes.Items;
 using QuantumWeavers.Components.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace QuantumWeavers.Components.Items {
     public abstract class ItemComponent : MonoBehaviour {
+        [FormerlySerializedAs("Item")]
         [Tooltip("Item information.")]
-        [SerializeField] protected Item Item;
+        [SerializeField] protected Item ItemInfo;
         
         // Outline effect of the item
         private OutlineEffect _outline;
@@ -37,7 +39,7 @@ namespace QuantumWeavers.Components.Items {
         /// </summary>
         /// <returns>The name of the item</returns>
         public string ItemName() {
-            return Item.Name;
+            return ItemInfo.Name;
         }
 
         #endregion

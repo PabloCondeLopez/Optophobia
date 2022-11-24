@@ -1,8 +1,8 @@
 using UnityEngine;
 
 namespace QuantumWeavers.Classes.Items {
-    [System.Serializable]
-    public class Item
+    [CreateAssetMenu(fileName = "Item",  menuName = "Items")]
+    public class Item : ScriptableObject
     {
         [Tooltip("Name of the item.")]
         public string Name;
