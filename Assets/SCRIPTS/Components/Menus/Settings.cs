@@ -13,6 +13,8 @@ namespace QuantumWeavers.Components.Menus {
         [Tooltip("AudioMixer.")]
         public AudioMixer AudioMixer;
 
+        private Vector2 _soundRange = new Vector2(10,-20);
+
         [Tooltip("Slider to change the general volume.")]
         public Slider GeneralSlider;
         [Tooltip("Slider to change the music volume.")]
@@ -64,9 +66,9 @@ namespace QuantumWeavers.Components.Menus {
             AudioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));
             AudioMixer.SetFloat("SoundEffects", PlayerPrefs.GetFloat("SoundEffectsVolume"));
 
-            GeneralSlider.value = (PlayerPrefs.GetFloat("GeneralVolume") + 40) / 50;
-            MusicSlider.value = (PlayerPrefs.GetFloat("MusicVolume") + 40) / 50;
-            EffectsSlider.value = (PlayerPrefs.GetFloat("SoundEffectsVolume") + 40) / 50;
+            GeneralSlider.value = PlayerPrefs.GetFloat("GeneralVolume") / (_soundRange.y + _soundRange.x - _soundRange.y);
+            MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume") / (_soundRange.y + _soundRange.x - _soundRange.y);
+            EffectsSlider.value = PlayerPrefs.GetFloat("SoundEffectsVolume") / (_soundRange.y + _soundRange.x - _soundRange.y);
 
             UpdateText();
         }
@@ -97,8 +99,8 @@ namespace QuantumWeavers.Components.Menus {
         /// <param name="volume">New value of the general volume.</param>
         protected void SetVolume(float volume)
         {
-            AudioMixer.SetFloat("Volume", volume * 50 - 40);
-            PlayerPrefs.SetFloat("GeneralVolume", volume * 50 - 40);
+            AudioMixer.SetFloat("Volume", (volume * (_soundRange.x - _soundRange.y)) + _soundRange.y);
+            PlayerPrefs.SetFloat("GeneralVolume", (volume * (_soundRange.x - _soundRange.y)) + _soundRange.y);
         }
         /// <summary>
         /// 
@@ -106,8 +108,8 @@ namespace QuantumWeavers.Components.Menus {
         /// <param name="volume">New value of the music volume.</param>
         protected void SetMusicVolume(float volume)
         {
-            AudioMixer.SetFloat("Music", volume * 50 - 40);
-            PlayerPrefs.SetFloat("MusicVolume", volume * 50 - 40);
+            AudioMixer.SetFloat("Music", (volume * (_soundRange.x - _soundRange.y)) + _soundRange.y);
+            PlayerPrefs.SetFloat("MusicVolume", (volume * (_soundRange.x - _soundRange.y)) + _soundRange.y);
         }
         /// <summary>
         /// 
@@ -115,8 +117,8 @@ namespace QuantumWeavers.Components.Menus {
         /// <param name="volume">New value of the sound effects volume.</param>
         protected void SetSoundEffectsVolume(float volume)
         {
-            AudioMixer.SetFloat("SoundEffects", volume * 50 - 40);
-            PlayerPrefs.SetFloat("SoundEffectsVolume", volume * 50 - 40);
+            AudioMixer.SetFloat("SoundEffects", (volume * (_soundRange.x - _soundRange.y)) + _soundRange.y);
+            PlayerPrefs.SetFloat("SoundEffectsVolume", (volume * (_soundRange.x - _soundRange.y)) + _soundRange.y);
         }
 
 
