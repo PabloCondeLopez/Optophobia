@@ -12,9 +12,6 @@ namespace QuantumWeavers.Components.UI
         [Tooltip("AudioMixer.")]
         public AudioMixer AudioMixer;
 
-        [Tooltip("True - full screen, false - not full screen.")]
-        public bool IsFullScreen = true;
-
         [Tooltip("Slider to change the general volume.")]
         public Slider GeneralSlider;
         [Tooltip("Slider to change the music volume.")]
@@ -83,7 +80,7 @@ namespace QuantumWeavers.Components.UI
         /// <param name="fullScreen">Wether the screen is on full screen mode.</param>
         protected void SetFullScreen(bool fullScreen)
         {
-            IsFullScreen = fullScreen;
+            Screen.SetResolution(Screen.width, Screen.height, fullScreen);
             SoundManager.Instance.Play("Button");
         }
 
