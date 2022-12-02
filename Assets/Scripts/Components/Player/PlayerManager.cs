@@ -51,6 +51,8 @@ namespace QuantumWeavers.Components.Player {
         /// </summary>
         /// <param name="collision"></param>
         private void OnCollisionEnter(Collision collision) {
+            if (collision.collider.CompareTag("Floor")) return;
+            
             SoundManager.Instance.Play("Collision");
         }
 
