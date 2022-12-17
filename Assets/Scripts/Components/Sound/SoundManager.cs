@@ -111,6 +111,15 @@ namespace QuantumWeavers.Components.Sound {
             s.Source.Play();
         }
 
+        public void PlayOneShot(string clipName) {
+            Classes.Sound.Sound s = Array.Find(Sounds, dummySound => dummySound.ClipName == clipName);
+            if (s == null) {
+                Debug.LogError("Sound " + clipName + " not found");
+                return;
+            }
+            s.Source.PlayOneShot(s.AudioClip);
+        }
+
         /// <summary>
         /// Finds the clip named "clipname" and stops it if it exists.
         /// </summary>
