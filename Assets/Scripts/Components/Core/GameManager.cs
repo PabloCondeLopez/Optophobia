@@ -27,7 +27,7 @@ namespace QuantumWeavers.Components.Core {
         [Tooltip("Input handler component.")]
         public InputHandler Input { get; private set; }
         [Tooltip("Checks if the eyes are currently open.")]
-        public bool EyesOpen { get; private set; }
+        public bool EyesOpen { get; set; }
         [Tooltip("Checks if the game is paused.")]
         public bool GamePaused { get; set; }
 
