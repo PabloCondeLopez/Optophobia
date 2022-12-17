@@ -1,7 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using QuantumWeavers.Components.Player;
+using QuantumWeavers.Components.Sound;
 using Cinemachine;
 
 namespace QuantumWeavers.Components.Menus {
@@ -67,6 +69,13 @@ namespace QuantumWeavers.Components.Menus {
         {
             camera.m_Lens.FieldOfView = Mathf.FloorToInt(_rangeOfFOV.x + (_rangeOfFOV.y-_rangeOfFOV.x) * value);
             FOVText.text = camera.m_Lens.FieldOfView.ToString();
+        }
+
+        public void OnExitButton()
+        {
+            Debug.Log("Salir");
+            SceneManager.LoadScene(0);
+            SoundManager.Instance.Play("Button");
         }
         
         #endregion

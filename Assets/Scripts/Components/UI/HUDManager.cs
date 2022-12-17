@@ -42,6 +42,7 @@ namespace QuantumWeavers.Components.UI {
         #region Unity Methods
 
         private void Start() {
+			setSimulateClosedEyes(true);
 			_gameManager = GameManager.Instance;
 		}
 

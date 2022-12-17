@@ -29,7 +29,7 @@ namespace QuantumWeavers.Components.Core {
         [Tooltip("Checks if the eyes are currently open.")]
         public bool EyesOpen { get; private set; }
         [Tooltip("Checks if the game is paused.")]
-        public bool GamePaused { get; private set; }
+        public bool GamePaused { get; set; }
 
         #endregion
 
@@ -38,7 +38,20 @@ namespace QuantumWeavers.Components.Core {
         private GameStates _state;
         #endregion
 
+        #region Getters&Setters
+
+        public GameStates GetGameStates() { return _state; }
+        public void SetGameStates(bool state) { _state = state ? GameStates.Playing : GameStates.Pause; }
+
+        #endregion
+
         #region Unity Events
+
+        private void Start()
+        {
+            EyesOpen = true;
+            //_state = GameStates.Playing;
+        }
 
         /// <summary>
         /// Handles the states of the game and the eyes handler.
