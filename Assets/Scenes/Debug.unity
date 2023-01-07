@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2134,6 +2134,25 @@ MonoBehaviour:
   EyesClosedSprite: {fileID: 21300000, guid: 657bb60a6cdc344448e6a50575816984, type: 3}
   PauseMenu: {fileID: 2025564093}
   SimulateClosedEyes: 0
+--- !u!1 &554693879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7900907224103413598, guid: d9354b54e654826408d21883e62d55d2, type: 3}
+  m_PrefabInstance: {fileID: 1615717356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &554693883
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554693879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7357824928677411686, guid: d9354b54e654826408d21883e62d55d2, type: 3}
 --- !u!1 &559474266
 GameObject:
   m_ObjectHideFlags: 0
@@ -5205,6 +5224,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 590.3832, y: 875.5413}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1247530277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5173260832346328530, guid: d9354b54e654826408d21883e62d55d2, type: 3}
+  m_PrefabInstance: {fileID: 1615717356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1247530281
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247530277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4920087964079425494, guid: d9354b54e654826408d21883e62d55d2, type: 3}
 --- !u!1 &1254919980
 GameObject:
   m_ObjectHideFlags: 0
@@ -7783,25 +7821,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1879339033 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9202166077156511143, guid: d9354b54e654826408d21883e62d55d2, type: 3}
-  m_PrefabInstance: {fileID: 1615717356}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1879339037
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879339033}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3279533534570359355, guid: d9354b54e654826408d21883e62d55d2, type: 3}
 --- !u!1 &1947980176
 GameObject:
   m_ObjectHideFlags: 0
