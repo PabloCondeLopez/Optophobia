@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using QuantumWeavers.Components.Sound;
+using QuantumWeavers.Components.Core;
 
 namespace QuantumWeavers.Components.Menus {
     public class Menu : MonoBehaviour
@@ -12,6 +13,8 @@ namespace QuantumWeavers.Components.Menus {
         /// </summary>
         public void OnStartButton()
         {
+            GameManager.Instance.EyesOpen = true;
+            GameManager.Instance.SetGameStates(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             PlayButton();
         }

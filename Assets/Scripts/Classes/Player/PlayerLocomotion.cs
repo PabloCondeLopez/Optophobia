@@ -1,5 +1,6 @@
 using UnityEngine;
 using QuantumWeavers.Components.Core;
+using QuantumWeavers.Components.Sound;
 
 namespace QuantumWeavers.Classes.Player {
     public class PlayerLocomotion {
@@ -18,6 +19,9 @@ namespace QuantumWeavers.Classes.Player {
         private float _xMovement;
         [Tooltip("Movement amount in the y axis of the player")]
         private float _zMovement;
+
+        [Tooltip("Time between footsteps")]
+        private float _footStepTimer;
 
         #endregion
 
@@ -50,21 +54,37 @@ namespace QuantumWeavers.Classes.Player {
         private void HandleMovement() {
             _xMovement = _input.GetMovement().x;
             _zMovement = _input.GetMovement().y;
-            
-            if(!GameManager.Instance.EyesOpen) {
-                Vector3 forward = _playerPosition.transform.forward.normalized;
-                Vector3 right = _playerPosition.transform.right.normalized;
 
-                forward.y = 0;
-                right.y = 0;
-
-                Vector3 forwardRelative = _zMovement * forward;
-                Vector3 rightRelative = _xMovement * right;
-
-                Vector3 cameraRelativeMovement = forwardRelative + rightRelative;
-                
-                _rb.MovePosition(_rb.position + _playerSpeed * Time.deltaTime * cameraRelativeMovement);
+            if (GameManager.Instance.EyesOpen) {
+                SoundManager.Instance.Stop("Footstep_1");
+                return;
             }
+            
+            Vector3 forward = _playerPosition.transform.forward.normalized;
+            Vector3 right = _playerPosition.transform.right.normalized;
+
+            forward.y = 0;
+            right.y = 0;
+
+            Vector3 forwardRelative = _zMovement * forward;
+            Vector3 rightRelative = _xMovement * right;
+
+            Vector3 cameraRelativeMovement = forwardRelative + rightRelative;
+                
+            _rb.MovePosition(_rb.position + _playerSpeed * Time.deltaTime * cameraRelativeMovement);
+
+            if (cameraRelativeMovement == Vector3.zero) return;
+            
+            HandleFootsteps();
+        }
+
+        private void HandleFootsteps() {
+            _footStepTimer -= Time.deltaTime;
+
+            if (_footStepTimer > 0) return;
+
+            SoundManager.Instance.Play("Footstep_1");
+            _footStepTimer = 0.5f;
         }
 
         #endregion

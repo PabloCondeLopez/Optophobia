@@ -1,7 +1,9 @@
+using System.Collections;
 using QuantumWeavers.Classes.Player;
 using QuantumWeavers.Components.Core;
 using QuantumWeavers.Components.Sound;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace QuantumWeavers.Components.Player {
     public class PlayerManager : MonoBehaviour {
@@ -19,6 +21,8 @@ namespace QuantumWeavers.Components.Player {
         private PlayerLocomotion _locomotion;
         [Tooltip("Player camera class.")]
         private PlayerCamera _camera;
+        [Tooltip("Gamepad")] 
+        private Gamepad _gamepad;
 
         #endregion
 
@@ -34,6 +38,7 @@ namespace QuantumWeavers.Components.Player {
 
             _locomotion = new PlayerLocomotion(rb, input, PlayerSpeed, modelTransform);
             _camera = new PlayerCamera(modelTransform, CameraPosition, input, MouseSensitivity);
+            _gamepad = Gamepad.current;
         }
 
         /// <summary>
@@ -54,6 +59,8 @@ namespace QuantumWeavers.Components.Player {
             if (collision.collider.CompareTag("Floor")) return;
             
             SoundManager.Instance.Play("Collision");
+
+            StartCoroutine(HandleVibration());
         }
 
         #endregion
@@ -69,8 +76,16 @@ namespace QuantumWeavers.Components.Player {
         {
             MouseSensitivity = value;
         }
-
         
+        #endregion
+
+        #region Methods
+
+        private IEnumerator HandleVibration() {
+            _gamepad?.SetMotorSpeeds(0.75f, 0.75f);
+            yield return new WaitForSeconds(0.75f);
+            _gamepad?.SetMotorSpeeds(0f, 0f);
+        }
 
         #endregion
     }
