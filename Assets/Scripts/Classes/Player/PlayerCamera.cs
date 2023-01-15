@@ -19,6 +19,8 @@ namespace QuantumWeavers.Components.Player {
 		[Tooltip("Rotation of the y axis")]
 		private float _yRotation;
 
+		private bool _isFrozen = false;
+
         #endregion
 
         #region Constructor
@@ -36,15 +38,20 @@ namespace QuantumWeavers.Components.Player {
 			_input = input;
 			_mouseSensitivity = mouseSensitivity;
 		}
-		
+
 		#endregion
+
+		public void SetIsFrozen(bool aux)
+		{
+			_isFrozen = aux;
+		}
 
 		#region Update
 		/// <summary>
 		/// Calls for Look().
 		/// </summary>
 		public void TickUpdate() {
-			Look();
+			if(!_isFrozen)Look();
 		}
 
 		#endregion

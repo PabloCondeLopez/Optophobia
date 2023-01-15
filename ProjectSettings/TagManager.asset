@@ -7,6 +7,8 @@ TagManager:
   - Item
   - Interactable
   - Floor
+  - TriggerFirstEvent
+  - TriggerBathroom
   layers:
   - Default
   - TransparentFX

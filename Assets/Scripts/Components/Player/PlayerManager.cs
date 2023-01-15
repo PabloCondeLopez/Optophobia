@@ -24,6 +24,10 @@ namespace QuantumWeavers.Components.Player {
         [Tooltip("Gamepad")] 
         private Gamepad _gamepad;
 
+        private Quaternion actualTarget = new Quaternion();
+        private bool searchingTarget = false;
+        private bool triggerActivated = false;
+
         #endregion
 
         #region Unity Events
@@ -49,6 +53,18 @@ namespace QuantumWeavers.Components.Player {
             
             _camera.TickUpdate();
             _locomotion.TickUpdate();
+
+            if (searchingTarget)
+            {
+                Quaternion smoothedRotation = Quaternion.Lerp(CameraPosition.rotation, actualTarget, 0.005f);
+                CameraPosition.rotation = smoothedRotation;
+                if(CameraPosition.rotation == actualTarget)
+                {
+                    searchingTarget = false;
+                    _locomotion.SetIsFrozen(false);
+                    _camera.SetIsFrozen(false);
+                }
+            }
         }
         
         /// <summary>
@@ -61,6 +77,22 @@ namespace QuantumWeavers.Components.Player {
             SoundManager.Instance.Play("Collision");
 
             StartCoroutine(HandleVibration());
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.CompareTag("TriggerFirstEvent") && !triggerActivated)
+            {
+                _camera.SetIsFrozen(true);
+                _locomotion.SetIsFrozen(true);
+                actualTarget = Quaternion.LookRotation(other.transform.GetChild(0).position - CameraPosition.position);
+                searchingTarget = true;
+                triggerActivated = true;
+            }
+            else if (other.gameObject.CompareTag("TriggerBathroom")){
+                // al llegar al baño parpadean las luces y suena un ruido
+                GameManager.Instance.LightsBlink(0.5f, 10);
+            }
         }
 
         #endregion

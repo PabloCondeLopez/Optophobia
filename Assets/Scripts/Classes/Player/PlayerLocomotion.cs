@@ -20,6 +20,8 @@ namespace QuantumWeavers.Classes.Player {
         [Tooltip("Movement amount in the y axis of the player")]
         private float _zMovement;
 
+        private bool _isFrozen = false;
+
         [Tooltip("Time between footsteps")]
         private float _footStepTimer;
 
@@ -35,13 +37,18 @@ namespace QuantumWeavers.Classes.Player {
         
         #endregion
 
+        public void SetIsFrozen(bool aux)
+        {
+            _isFrozen = aux;
+        }
+
         #region Update
 
         /// <summary>
         /// Calls for HandleMovement().
         /// </summary>
         public void TickUpdate() {
-            HandleMovement();
+            if(!_isFrozen) HandleMovement();
         }
 
         #endregion

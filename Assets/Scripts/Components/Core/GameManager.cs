@@ -1,5 +1,7 @@
 using UnityEngine;
 using QuantumWeavers.Shared;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace QuantumWeavers.Components.Core {
     public class GameManager : MonoBehaviour {
@@ -31,6 +33,10 @@ namespace QuantumWeavers.Components.Core {
         [Tooltip("Checks if the game is paused.")]
         public bool GamePaused { get; set; }
 
+        [SerializeField] private Light[] IlluminationController;
+
+        private Vector2 _coroutineCounter = new Vector2(0, 10);
+
         #endregion
 
         #region _privateVariables
@@ -51,6 +57,15 @@ namespace QuantumWeavers.Components.Core {
         {
             EyesOpen = true;
             //_state = GameStates.Playing;
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
+
+        private void OnSceneChanged(Scene current, Scene next)
+        {
+            if(next.buildIndex == 1)
+            {
+                IlluminationController = GameObject.FindObjectsOfType<Light>();
+            }
         }
 
         /// <summary>
@@ -70,6 +85,9 @@ namespace QuantumWeavers.Components.Core {
 
             if (Input.EyesHandler())
                 EyesOpen = !EyesOpen;
+
+            
+
         }
 
         #endregion
@@ -82,6 +100,23 @@ namespace QuantumWeavers.Components.Core {
         public void ResumeGame() {
             _state = GameStates.Playing;
             GamePaused = false;
+        }
+
+        public void LightsBlink(float count, int repetitionNumber)
+        {
+            StartCoroutine(LightsBlinkCoroutine(count));
+            _coroutineCounter = new Vector2(0, repetitionNumber);
+        }
+
+        private IEnumerator LightsBlinkCoroutine(float count)
+        {
+            while(_coroutineCounter.x <= _coroutineCounter.y)
+            {
+                _coroutineCounter.x++;
+                IlluminationController[0].gameObject.SetActive(!IlluminationController[0].gameObject.activeSelf);
+                yield return new WaitForSeconds(count);
+            }
+            StopCoroutine("LightsBlinkCoroutine");
         }
         
         #endregion
