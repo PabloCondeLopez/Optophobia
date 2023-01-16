@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace QuantumWeavers.Components.Items {
+    [RequireComponent(typeof(OutlineEffect))]
     public abstract class ItemComponent : MonoBehaviour {
 
         [Tooltip("Item information.")]

@@ -6,8 +6,10 @@ namespace QuantumWeavers.Components.Items
 {
     public class TakeableItem : ItemComponent
     {
-        [Tooltip("Hand that holds the item. SerializeField: you can change it from the editor.")]
+        [Tooltip("Hand that holds the item.")]
         private PlayerHand _playerHand;
+        [Tooltip("The item is on the hand")] 
+        protected bool IsOnHand;
 
         [Tooltip("Event used to use the item.")]
         public event Action Used;
@@ -35,9 +37,13 @@ namespace QuantumWeavers.Components.Items
                 _playerHand.GetItemOnHand().transform.parent = transform.parent;
                 _playerHand.GetItemOnHand().transform.position = transform.position;
                 _playerHand.GetItemOnHand().transform.rotation = Quaternion.Euler(Vector3.zero);
+                _playerHand.GetItemOnHand().IsOnHand = false;
+                _playerHand.GetItemOnHand().GetComponent<MeshCollider>().enabled = true;
             }
 
             _playerHand.SetItemOnHand(this);
+            IsOnHand = true;
+            GetComponentInChildren<MeshCollider>().enabled = false;
             HUD().Disable();
             RemoveOutline();
 
@@ -57,7 +63,7 @@ namespace QuantumWeavers.Components.Items
         /// If the tag of the item correlates to the one of the object, tries to use the interactableObject.
         /// </summary>
         /// <param name="interactableObject">The player is trying to use the item in this object.</param>
-        public void UseObject(ObjectDoor interactableObject)
+        public virtual void UseObject(ObjectDoor interactableObject)
         {
             if (interactableObject.GetItemToUse() == this) {
                 Used?.Invoke();

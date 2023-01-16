@@ -91,6 +91,14 @@ namespace QuantumWeavers.Components.Core {
         }
 
         /// <summary>
+        /// Handles when the player turn on or off the lantern
+        /// </summary>
+        /// <returns>True if left click or east gamepad button was pressed this frame. False otherwise</returns>
+        public bool OnLanternTurn() {
+            return _input.Player.Lantern.WasPerformedThisFrame();
+        }
+
+        /// <summary>
         /// Handles when the player press the pause key
         /// </summary>
         /// <returns>True if it was pressed this frame. False otherwise</returns>
