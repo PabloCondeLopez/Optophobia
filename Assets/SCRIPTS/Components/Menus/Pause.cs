@@ -74,8 +74,9 @@ namespace QuantumWeavers.Components.Menus {
         public void OnExitButton()
         {
             Debug.Log("Salir");
-            SceneManager.LoadScene(0);
+            SoundManager.Instance.Play("MainMenuMusic");
             SoundManager.Instance.Play("Button");
+            SceneManager.LoadScene(0);
         }
         
         #endregion
