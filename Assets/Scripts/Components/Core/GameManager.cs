@@ -39,6 +39,8 @@ namespace QuantumWeavers.Components.Core {
         private Vector2 _coroutineCounter = new Vector2(0, 10);
         private float _soundCount;
         private float _volumeChange = 1;
+        
+        private Transform _currentCheckpoint;
 
         public bool _canCloseEyes = false;
 
@@ -53,6 +55,14 @@ namespace QuantumWeavers.Components.Core {
 
         public GameStates GetGameStates() { return _state; }
         public void SetGameStates(bool state) { _state = state ? GameStates.Playing : GameStates.Pause; }
+        
+        public void SetCheckpoint(Transform checkpoint) { _currentCheckpoint = checkpoint; }
+
+        public void LoadCheckPoint() {
+            Transform playerPosition = GameObject.FindWithTag("Player").transform;
+             playerPosition.position = _currentCheckpoint.position;
+             playerPosition.rotation = _currentCheckpoint.rotation;
+        }
 
         #endregion
 
