@@ -90,10 +90,6 @@ namespace QuantumWeavers.Components.Core {
             {
                 EyesOpen = !EyesOpen;
                 volumeChange = 1;
-                foreach(Classes.Sound.Sound s in SoundManager.Instance.ClosedEyesSounds)
-                {
-                    SoundManager.Instance.Stop(s.ClipName);
-                }
             }
 
             soundCount -= 0.005f;

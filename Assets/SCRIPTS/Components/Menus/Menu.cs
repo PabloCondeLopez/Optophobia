@@ -8,10 +8,6 @@ namespace QuantumWeavers.Components.Menus {
     {
         #region Methods
 
-        private void Start()
-        {
-            SoundManager.Instance.Play("MainMenuMusic");
-        }
         /// <summary>
         /// Function that runs when the start button is clicked.
         /// </summary>
@@ -21,7 +17,6 @@ namespace QuantumWeavers.Components.Menus {
             GameManager.Instance.SetGameStates(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             PlayButton();
-            SoundManager.Instance.Stop("MainMenuMusic");
         }
 
         public void OnDebugButton()
