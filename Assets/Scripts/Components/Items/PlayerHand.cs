@@ -106,7 +106,7 @@ namespace QuantumWeavers.Components.Items {
         /// </summary>
         private void SeekInteractableObjects() {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, InteractableDetectionRange, InteractableMask)) {
-                ObjectDoor interactable = hit.collider.GetComponentInParent<ObjectDoor>();
+                Interactable interactable = hit.collider.GetComponentInParent<Interactable>();
 
                 if (_previousInteractableCollider != hit.collider) {
                     if (hit.collider && interactable) {
@@ -116,8 +116,12 @@ namespace QuantumWeavers.Components.Items {
                     }
                 }
 
-                if (_gameManager.Input.OnInteract() && _itemOnHand) {
-                    _itemOnHand.UseObject(interactable);
+                if (_gameManager.Input.OnInteract()) {
+                    if(_itemOnHand && interactable is ObjectDoor objectDoor)
+                        _itemOnHand.UseObject(objectDoor);
+                    else if (interactable is Door door) {
+                        door.OpenDoor();
+                    }
                 }
             }
 

@@ -63,12 +63,11 @@ namespace QuantumWeavers.Components.Items
         /// If the tag of the item correlates to the one of the object, tries to use the interactableObject.
         /// </summary>
         /// <param name="interactableObject">The player is trying to use the item in this object.</param>
-        public virtual void UseObject(ObjectDoor interactableObject)
-        {
-            if (interactableObject.GetItemToUse() == this) {
-                Used?.Invoke();
-                Destroy(gameObject);
-            }
+        public virtual void UseObject(ObjectDoor interactableObject) {
+            if (interactableObject.GetItemToUse() != this) return;
+            
+            Used?.Invoke();
+            Destroy(gameObject);
         }
         
         #endregion
