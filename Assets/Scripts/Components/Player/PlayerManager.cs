@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using QuantumWeavers.Classes.Player;
 using QuantumWeavers.Components.Core;
 using QuantumWeavers.Components.Sound;
@@ -28,6 +29,8 @@ namespace QuantumWeavers.Components.Player {
         private bool _searchingTarget = false;
         private bool _trigger1Activated = false;
         private bool _onExit = false;
+        private float _cameraDelta = 3f;
+        private GameObject _shadow;
 
         #endregion
 
@@ -44,6 +47,8 @@ namespace QuantumWeavers.Components.Player {
             _locomotion = new PlayerLocomotion(rb, input, PlayerSpeed, modelTransform);
             _camera = new PlayerCamera(modelTransform, CameraPosition, input, MouseSensitivity);
             _gamepad = Gamepad.current;
+            
+            _shadow = TriggerManager.Instance.GetShadow();
         }
 
         /// <summary>
@@ -57,14 +62,18 @@ namespace QuantumWeavers.Components.Player {
 
             if (!_searchingTarget) return;
             
-            Quaternion smoothedRotation = Quaternion.Slerp(CameraPosition.rotation, _actualTarget, 0.005f);
+            Quaternion smoothedRotation = Quaternion.Slerp(CameraPosition.rotation, _actualTarget, 0.003f);
             CameraPosition.rotation = smoothedRotation;
+            _cameraDelta -= Time.deltaTime;
+    
+            _shadow.transform.DORotate(new Vector3(0, 0, 0), 2f).SetDelay(2.5f);
             
-            if (CameraPosition.rotation != _actualTarget) return;
+            if (CameraPosition.rotation != _actualTarget || _cameraDelta > 0f) return;
             
             _searchingTarget = false;
             _locomotion.SetIsFrozen(false);
             _camera.SetIsFrozen(false);
+            _shadow.SetActive(false);
         }
         
         /// <summary>
@@ -81,23 +90,22 @@ namespace QuantumWeavers.Components.Player {
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.CompareTag("TriggerFirstEvent") && !_trigger1Activated)
-            {
+            if(other.gameObject.CompareTag("TriggerFirstEvent") && !_trigger1Activated) {
                 _camera.SetIsFrozen(true);
                 _locomotion.SetIsFrozen(true);
                 _actualTarget = Quaternion.LookRotation(other.transform.GetChild(0).position - CameraPosition.position);
                 _searchingTarget = true;
                 _trigger1Activated = true;
+                
+                _shadow.SetActive(true);
+                _shadow.transform.DORotate(new Vector3(0, 0, -39f), 2f).SetDelay(0.5f);
             }
-            else if (other.gameObject.CompareTag("TriggerBathroom")){
+            else if (other.gameObject.CompareTag("TriggerBathroom")) {
                 GameManager.Instance.LightsBlink(0.5f, 10);
                 SoundManager.Instance.Play("FlickeringLights");
             }
-            else if (other.gameObject.CompareTag("TriggerKnock"))
-            {
-                if (_onExit && Random.Range(0f, 1f) <= 0.5f)
-                {
-                    Debug.Log("knock");
+            else if (other.gameObject.CompareTag("TriggerKnock")) {
+                if (_onExit && Random.Range(0f, 1f) <= 0.5f) {
                     SoundManager.Instance.Play("Knock");
                 }
                 _onExit = !_onExit;
