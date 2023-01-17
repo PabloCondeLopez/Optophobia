@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using QuantumWeavers.Components.Core;
 using UnityEngine;
 using QuantumWeavers.Components.Sound;
 
@@ -11,6 +12,8 @@ namespace QuantumWeavers.Components.Items {
 
         [SerializeField] 
         private Transform ButtonModel;
+        [SerializeField] 
+        private GameObject VictoryPanel;
 
         private bool _isPressed;
 
@@ -18,7 +21,7 @@ namespace QuantumWeavers.Components.Items {
         /// It warns the subscribers to realize the subscribed method.
         /// </summary>
         public void PressButton() {
-            Pressed?.Invoke();
+            /*Pressed?.Invoke();
 
             if (!_isPressed) {
                 ButtonModel.DOLocalMove(new Vector3(0f, 0f, -0.2f), 1f);
@@ -28,6 +31,10 @@ namespace QuantumWeavers.Components.Items {
                 ButtonModel.DOLocalMove(new Vector3(0f, 0f, 0f), 1f);
                 _isPressed = false;
             }
+            */
+            
+            VictoryPanel.SetActive(true);
+            GameManager.Instance.SetGameStates(false);
             
             SoundManager.Instance.Play("Button");
         }

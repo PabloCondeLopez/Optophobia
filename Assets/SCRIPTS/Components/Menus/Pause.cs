@@ -7,7 +7,6 @@ using QuantumWeavers.Components.Sound;
 using Cinemachine;
 using QuantumWeavers.Components.Core;
 using DG.Tweening;
-using UnityEditor.Animations;
 
 namespace QuantumWeavers.Components.Menus {
     public class Pause : MonoBehaviour
