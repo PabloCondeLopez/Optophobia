@@ -38,7 +38,7 @@ namespace QuantumWeavers.Components.Items
                 _playerHand.GetItemOnHand().transform.position = transform.position;
                 _playerHand.GetItemOnHand().transform.rotation = Quaternion.Euler(Vector3.zero);
                 _playerHand.GetItemOnHand().IsOnHand = false;
-                _playerHand.GetItemOnHand().GetComponent<MeshCollider>().enabled = true;
+                _playerHand.GetItemOnHand().GetComponentInChildren<MeshCollider>().enabled = true;
             }
 
             _playerHand.SetItemOnHand(this);

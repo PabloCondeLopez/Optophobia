@@ -77,7 +77,7 @@ namespace QuantumWeavers.Components.Player {
             CameraPosition.rotation = smoothedRotation;
             _cameraDelta -= Time.deltaTime;
 
-            if (CameraPosition.rotation != _actualTarget || _cameraDelta > 0f) return;
+            if (_cameraDelta > 0f) return;
             
             _searchingTarget = false;
             _locomotion.SetIsFrozen(false);
@@ -134,7 +134,7 @@ namespace QuantumWeavers.Components.Player {
             }
         }
 
-        private void OnTriggerExit(Collider other) {
+        private void OnTriggerStay(Collider other) {
             if (!other.gameObject.CompareTag("TriggerDead")) return;
 
             _deltaDead -= Time.deltaTime;

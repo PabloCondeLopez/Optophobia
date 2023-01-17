@@ -62,7 +62,7 @@ namespace QuantumWeavers.Components.Items {
         public void SetItemOnHand(TakeableItem newItem) {
             _itemOnHand = newItem;
             _itemOnHand.AttachItem();
-            GameManager.Instance.SetCheckpoint(GameObject.FindWithTag("Player").transform);
+            //GameManager.Instance.SetCheckpoint(GameObject.FindWithTag("Player").transform);
         }
         
         #endregion
