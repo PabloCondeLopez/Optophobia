@@ -4004,6 +4004,126 @@ MonoBehaviour:
     PlayOnAwake: 0
     Volume: 0.5
     Source: {fileID: 0}
+  - ClipName: Knock
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 6643399bf0d7dee41b51473e6d20e744, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Scream1
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 93cea6e8ac42ec046aec80620bc1a1e3, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Scream2
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 7f9c6b14e8584994eadf1ca705edb46b, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Scream3
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 233d4c76bf1ae7f41b18087904c101a0, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Scream4
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: deff8de8c7871fd41aa54ccbd74087a4, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Scream5
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 9e40022fa4d7c904e9546cd87e556186, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: AmbientSound
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 0adbe5337100b3a4faf6133bf1803105, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: DoorSlam1
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 0fde550e3f95d4847a558139a015eb99, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: DoorSlam2
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: fd35f3bd1ab152541898cd7bef4dcc51, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: EerieCut1
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 545bb77d939498844a00f99f05950860, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.8
+    Source: {fileID: 0}
+  - ClipName: EerieCut2
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 7560489d7702cab4dbc742275c05ac4d, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.8
+    Source: {fileID: 0}
+  - ClipName: EerieCut3
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 064eaf5cb790caa49b62eaf5a0440e95, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: EerieCut4
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: d22b311f9a818ae488f01f59a1883006, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: EerieCut5
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 9c8397a325df1344a88c81adc63f0b9a, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: EerieCut6
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 2257e288449179a47b77c3e4af2f3f6f, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: EerieCut7
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 0457bb66db7b4a946822694dbeaa0f96, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: EerieCut8
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: a3e098496b62a0e42a7f36777971bf9b, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  ClosedEyesSounds: []
 --- !u!4 &1196148476
 Transform:
   m_ObjectHideFlags: 0
@@ -4043,6 +4163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c6711b73c4511499c5f20cd957aa2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IlluminationController: []
 --- !u!1 &1228135811
 GameObject:
   m_ObjectHideFlags: 0

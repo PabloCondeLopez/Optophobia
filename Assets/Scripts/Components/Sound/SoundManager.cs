@@ -21,6 +21,7 @@ namespace QuantumWeavers.Components.Sound {
         [SerializeField] private AudioMixerGroup SoundEffectsMixerGroup;
         [Tooltip("Array of sounds. SerializeField: you can change it from the editor.")] 
         [SerializeField] private Classes.Sound.Sound[] Sounds;
+        public Classes.Sound.Sound[] ClosedEyesSounds;
 
         #endregion
 
@@ -84,6 +85,17 @@ namespace QuantumWeavers.Components.Sound {
                 PlayerPrefs.SetFloat("GeneralVolume", 0);
                 PlayerPrefs.SetFloat("SoundEffectsVolume", 0);
                 PlayerPrefs.SetFloat("MusicVolume", 0);
+            }
+
+            ClosedEyesSounds = new Classes.Sound.Sound[8];
+            int j = 0;
+            
+            for(int i=0; i<Sounds.Length; i++)
+            {
+                if (Sounds[i].ClipName.Contains("EerieCut")) { 
+                    ClosedEyesSounds[j] = Sounds[i]; 
+                    j++;
+                }
             }
         }
 

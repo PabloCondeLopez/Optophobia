@@ -9,7 +9,10 @@ namespace QuantumWeavers.Components.Items {
 		[SerializeField] protected TakeableItem ItemToUse;
 		[Tooltip("Time to complete the door's opening")]
 		[SerializeField] private float OpeningLenght;
-		
+
+		private bool _doorOpen = false;
+		[SerializeField] private int openAngle = -90;
+
 		#region Unity Events
 
 		private void Start() {
@@ -36,6 +39,7 @@ namespace QuantumWeavers.Components.Items {
 		/// It rotates the door from it's hinges.
 		/// </summary>
 		protected override void Interact() {
+			
 			transform.DORotate(new Vector3(0, -90, 0), OpeningLenght).SetEase(Ease.InOutFlash);
 			InteractableUsed = true;
 			ItemToUse.Used -= Interact;

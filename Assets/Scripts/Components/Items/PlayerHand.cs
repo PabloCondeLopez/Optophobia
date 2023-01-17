@@ -85,7 +85,7 @@ namespace QuantumWeavers.Components.Items {
                 }
                 
                 if (_gameManager.Input.OnInteract()) {
-                    if(item.GetType() == typeof(TakeableItem) || item.GetType().BaseType == typeof(TakeableItem))
+                    if (item.GetType() == typeof(TakeableItem) || item.GetType().BaseType == typeof(TakeableItem))
                         hit.collider.GetComponentInParent<TakeableItem>().TakeObject();
                     else if (item.GetType() == typeof(Button))
                         hit.collider.GetComponentInParent<Button>().PressButton();

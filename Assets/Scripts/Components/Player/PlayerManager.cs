@@ -26,7 +26,8 @@ namespace QuantumWeavers.Components.Player {
 
         private Quaternion actualTarget = new Quaternion();
         private bool searchingTarget = false;
-        private bool triggerActivated = false;
+        private bool trigger1Activated = false;
+        private bool onExit = false;
 
         #endregion
 
@@ -81,17 +82,26 @@ namespace QuantumWeavers.Components.Player {
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.CompareTag("TriggerFirstEvent") && !triggerActivated)
+            if(other.gameObject.CompareTag("TriggerFirstEvent") && !trigger1Activated)
             {
                 _camera.SetIsFrozen(true);
                 _locomotion.SetIsFrozen(true);
                 actualTarget = Quaternion.LookRotation(other.transform.GetChild(0).position - CameraPosition.position);
                 searchingTarget = true;
-                triggerActivated = true;
+                trigger1Activated = true;
             }
             else if (other.gameObject.CompareTag("TriggerBathroom")){
                 // al llegar al baño parpadean las luces y suena un ruido
                 GameManager.Instance.LightsBlink(0.5f, 10);
+            }
+            else if (other.gameObject.CompareTag("TriggerKnock"))
+            {
+                if (onExit)
+                {
+                    Debug.Log("knock");
+                    SoundManager.Instance.Play("Knock");
+                }
+                onExit = !onExit;
             }
         }
 

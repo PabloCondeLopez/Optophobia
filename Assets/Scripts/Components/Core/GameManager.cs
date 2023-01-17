@@ -2,6 +2,7 @@ using UnityEngine;
 using QuantumWeavers.Shared;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using QuantumWeavers.Components.Sound;
 
 namespace QuantumWeavers.Components.Core {
     public class GameManager : MonoBehaviour {
@@ -36,6 +37,8 @@ namespace QuantumWeavers.Components.Core {
         [SerializeField] private Light[] IlluminationController;
 
         private Vector2 _coroutineCounter = new Vector2(0, 10);
+        private float soundCount;
+        private float volumeChange = 1;
 
         #endregion
 
@@ -84,10 +87,21 @@ namespace QuantumWeavers.Components.Core {
             }
 
             if (Input.EyesHandler())
+            {
                 EyesOpen = !EyesOpen;
+                volumeChange = 1;
+            }
 
-            
-
+            soundCount -= 0.005f;
+            if (!EyesOpen && soundCount<=0)
+            {
+                volumeChange += 0.2f;
+                int r = Random.Range(0, SoundManager.Instance.ClosedEyesSounds.Length);
+                SoundManager.Instance.ClosedEyesSounds[r].Volume = 0.3f;
+                SoundManager.Instance.ClosedEyesSounds[r].Volume *= volumeChange;
+                SoundManager.Instance.Play(SoundManager.Instance.ClosedEyesSounds[r].ClipName);
+                soundCount = SoundManager.Instance.ClosedEyesSounds[r].AudioClip.length;
+            }
         }
 
         #endregion
