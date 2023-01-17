@@ -4137,6 +4137,13 @@ MonoBehaviour:
     PlayOnAwake: 0
     Volume: 0.3
     Source: {fileID: 0}
+  - ClipName: MainMenuMusic
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: b3555d36db5711a47a67fde99b5b1736, type: 3}
+    IsLoop: 1
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
   ClosedEyesSounds: []
 --- !u!4 &1196148476
 Transform:
