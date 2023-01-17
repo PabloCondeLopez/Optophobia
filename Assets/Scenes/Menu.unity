@@ -4144,6 +4144,13 @@ MonoBehaviour:
     PlayOnAwake: 0
     Volume: 0.5
     Source: {fileID: 0}
+  - ClipName: TensionMusicDark
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: 4ac75b17bc9524b4ea50403ca40a110b, type: 3}
+    IsLoop: 1
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
   ClosedEyesSounds: []
 --- !u!4 &1196148476
 Transform:

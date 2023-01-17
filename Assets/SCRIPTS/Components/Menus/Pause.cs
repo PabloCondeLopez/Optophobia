@@ -88,15 +88,7 @@ namespace QuantumWeavers.Components.Menus {
         {
             GameManager.Instance.SetGameStates(pause);
         }
-
-        public void onDead()
-        {
-            animator.Play("Blink");
-            //DOTween.To(() => EyesOpen.sprite, x => EyesOpen.sprite = x, EyesClosed, 1f).SetEase(Ease.InOutSine);
-        }
-
-       
-
+        
         #endregion
 
 
