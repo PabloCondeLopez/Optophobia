@@ -7,6 +7,7 @@ using QuantumWeavers.Components.Sound;
 using Cinemachine;
 using QuantumWeavers.Components.Core;
 using DG.Tweening;
+using UnityEditor.Animations;
 
 namespace QuantumWeavers.Components.Menus {
     public class Pause : MonoBehaviour
@@ -29,8 +30,7 @@ namespace QuantumWeavers.Components.Menus {
 
         [SerializeField] private CinemachineVirtualCamera camera;
 
-        [SerializeField] private Image EyesOpen;
-        [SerializeField] private Image EyesClosed;
+        [SerializeField] private Animator animator;
 
         #endregion
 
@@ -91,18 +91,11 @@ namespace QuantumWeavers.Components.Menus {
 
         public void onDead()
         {
-            SetPause(false);
-            EyesOpen.GetComponent<CanvasGroup>().DOFade(1, 0f);
-            EyesClosed.GetComponent<CanvasGroup>().DOFade(0, 1f);
-            Invoke("ChangeImage", 0.1f);
+            animator.Play("Blink");
+            //DOTween.To(() => EyesOpen.sprite, x => EyesOpen.sprite = x, EyesClosed, 1f).SetEase(Ease.InOutSine);
         }
 
-        private void ChangeImage()
-        {
-            EyesOpen.GetComponent<CanvasGroup>().DOFade(0, 1f);
-            EyesClosed.GetComponent<CanvasGroup>().DOFade(1, 0f);
-            Invoke("onDead", 0.1f);
-        }
+       
 
         #endregion
 
