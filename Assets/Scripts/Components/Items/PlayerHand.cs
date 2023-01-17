@@ -125,12 +125,13 @@ namespace QuantumWeavers.Components.Items {
                 }
             }
 
-            if (!hit.collider && _previousInteractableCollider) {
-                Interactable previousInteractable = _previousInteractableCollider.GetComponentInParent<Interactable>();
+            if (!hit.collider || !_previousInteractableCollider) return;
+            if (hit.collider.GetComponentInParent<Interactable>() is ButtonDoor) return;
+            
+            Interactable previousInteractable = _previousInteractableCollider.GetComponentInParent<Interactable>();
                 
-                previousInteractable.RemoveOutline();
-                _previousInteractableCollider = null;
-            }
+            previousInteractable.RemoveOutline();
+            _previousInteractableCollider = null;
         }
 
         #endregion

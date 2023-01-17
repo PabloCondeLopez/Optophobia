@@ -130,6 +130,7 @@ namespace QuantumWeavers.Components.Core {
                 IlluminationController[0].gameObject.SetActive(!IlluminationController[0].gameObject.activeSelf);
                 yield return new WaitForSeconds(count);
             }
+            SoundManager.Instance.Stop("FlickeringLights");
             StopCoroutine("LightsBlinkCoroutine");
         }
         

@@ -24,10 +24,10 @@ namespace QuantumWeavers.Components.Player {
         [Tooltip("Gamepad")] 
         private Gamepad _gamepad;
 
-        private Quaternion actualTarget = new Quaternion();
-        private bool searchingTarget = false;
-        private bool trigger1Activated = false;
-        private bool onExit = false;
+        private Quaternion _actualTarget = new Quaternion();
+        private bool _searchingTarget = false;
+        private bool _trigger1Activated = false;
+        private bool _onExit = false;
 
         #endregion
 
@@ -55,17 +55,16 @@ namespace QuantumWeavers.Components.Player {
             _camera.TickUpdate();
             _locomotion.TickUpdate();
 
-            if (searchingTarget)
-            {
-                Quaternion smoothedRotation = Quaternion.Lerp(CameraPosition.rotation, actualTarget, 0.005f);
-                CameraPosition.rotation = smoothedRotation;
-                if(CameraPosition.rotation == actualTarget)
-                {
-                    searchingTarget = false;
-                    _locomotion.SetIsFrozen(false);
-                    _camera.SetIsFrozen(false);
-                }
-            }
+            if (!_searchingTarget) return;
+            
+            Quaternion smoothedRotation = Quaternion.Slerp(CameraPosition.rotation, _actualTarget, 0.005f);
+            CameraPosition.rotation = smoothedRotation;
+            
+            if (CameraPosition.rotation != _actualTarget) return;
+            
+            _searchingTarget = false;
+            _locomotion.SetIsFrozen(false);
+            _camera.SetIsFrozen(false);
         }
         
         /// <summary>
@@ -82,26 +81,26 @@ namespace QuantumWeavers.Components.Player {
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.CompareTag("TriggerFirstEvent") && !trigger1Activated)
+            if(other.gameObject.CompareTag("TriggerFirstEvent") && !_trigger1Activated)
             {
                 _camera.SetIsFrozen(true);
                 _locomotion.SetIsFrozen(true);
-                actualTarget = Quaternion.LookRotation(other.transform.GetChild(0).position - CameraPosition.position);
-                searchingTarget = true;
-                trigger1Activated = true;
+                _actualTarget = Quaternion.LookRotation(other.transform.GetChild(0).position - CameraPosition.position);
+                _searchingTarget = true;
+                _trigger1Activated = true;
             }
             else if (other.gameObject.CompareTag("TriggerBathroom")){
-                // al llegar al baño parpadean las luces y suena un ruido
                 GameManager.Instance.LightsBlink(0.5f, 10);
+                SoundManager.Instance.Play("FlickeringLights");
             }
             else if (other.gameObject.CompareTag("TriggerKnock"))
             {
-                if (onExit)
+                if (_onExit && Random.Range(0f, 1f) <= 0.5f)
                 {
                     Debug.Log("knock");
                     SoundManager.Instance.Play("Knock");
                 }
-                onExit = !onExit;
+                _onExit = !_onExit;
             }
         }
 

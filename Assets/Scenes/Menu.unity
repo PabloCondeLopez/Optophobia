@@ -4049,7 +4049,7 @@ MonoBehaviour:
   - ClipName: AmbientSound
     AudioType: 0
     AudioClip: {fileID: 8300000, guid: 0adbe5337100b3a4faf6133bf1803105, type: 3}
-    IsLoop: 0
+    IsLoop: 1
     PlayOnAwake: 0
     Volume: 0.5
     Source: {fileID: 0}
@@ -4119,6 +4119,20 @@ MonoBehaviour:
   - ClipName: EerieCut8
     AudioType: 0
     AudioClip: {fileID: 8300000, guid: a3e098496b62a0e42a7f36777971bf9b, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: VentilationSound
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 0c3080a75cf478747a4f45387105c35a, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.3
+    Source: {fileID: 0}
+  - ClipName: FlickeringLights
+    AudioType: 0
+    AudioClip: {fileID: 8300000, guid: 0c859f049eb628f4693bfada8c107d9b, type: 3}
     IsLoop: 0
     PlayOnAwake: 0
     Volume: 0.3
