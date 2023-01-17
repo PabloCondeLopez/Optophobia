@@ -4123,6 +4123,7 @@ MonoBehaviour:
     PlayOnAwake: 0
     Volume: 0.3
     Source: {fileID: 0}
+<<<<<<< Updated upstream
   - ClipName: VentilationSound
     AudioType: 0
     AudioClip: {fileID: 8300000, guid: 0c3080a75cf478747a4f45387105c35a, type: 3}
@@ -4134,6 +4135,12 @@ MonoBehaviour:
     AudioType: 0
     AudioClip: {fileID: 8300000, guid: 0c859f049eb628f4693bfada8c107d9b, type: 3}
     IsLoop: 0
+=======
+  - ClipName: MainMenuMusic
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: cfefd66117c5b54449dd533d05abd33b, type: 3}
+    IsLoop: 1
+>>>>>>> Stashed changes
     PlayOnAwake: 0
     Volume: 0.3
     Source: {fileID: 0}
