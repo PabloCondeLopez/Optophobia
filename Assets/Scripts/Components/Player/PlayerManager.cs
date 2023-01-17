@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using QuantumWeavers.Classes.Player;
@@ -6,7 +5,6 @@ using QuantumWeavers.Components.Core;
 using QuantumWeavers.Components.Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
 namespace QuantumWeavers.Components.Player {
     public class PlayerManager : MonoBehaviour {
@@ -27,14 +25,9 @@ namespace QuantumWeavers.Components.Player {
         [Tooltip("Gamepad")] 
         private Gamepad _gamepad;
 
-        [SerializeField] private GameObject Tutorial;
-        [SerializeField] private GameObject EyesClosed;
-        [SerializeField] private GameObject EyesIndicator;
-
-        [SerializeField] private GameObject DefeatPanel;
-        [SerializeField] private Animator EyeAnimator;
-
-        private float _deltaDead = 17f;
+        [SerializeField] private GameObject _tutorial;
+        [SerializeField] private GameObject _eyesClosed;
+        [SerializeField] private GameObject _eyesIndicator;
 
         private Quaternion _actualTarget = new Quaternion();
         private bool _searchingTarget = false;
@@ -73,9 +66,12 @@ namespace QuantumWeavers.Components.Player {
 
             if (!_searchingTarget) return;
             
-            CameraPosition.rotation = Quaternion.Slerp(CameraPosition.rotation, _actualTarget, 0.002f);
+            Quaternion smoothedRotation = Quaternion.Slerp(CameraPosition.rotation, _actualTarget, 0.003f);
+            CameraPosition.rotation = smoothedRotation;
             _cameraDelta -= Time.deltaTime;
-
+    
+            _shadow.transform.DORotate(new Vector3(0, 0, 0), 2f).SetDelay(2.5f);
+            
             if (CameraPosition.rotation != _actualTarget || _cameraDelta > 0f) return;
             
             _searchingTarget = false;
@@ -83,13 +79,13 @@ namespace QuantumWeavers.Components.Player {
             _camera.SetIsFrozen(false);
 
             _shadow.SetActive(false);
-            Tutorial.SetActive(true);
+            _tutorial.SetActive(true);
 
             GameManager.Instance._canCloseEyes = true;
             GameManager.Instance.EyesOpen = true;
             GameManager.Instance.SetGameStates(false);
-            EyesClosed.SetActive(true);
-            EyesIndicator.SetActive(true);
+            _eyesClosed.SetActive(true);
+            _eyesIndicator.SetActive(true);
 
         }
         
@@ -115,9 +111,7 @@ namespace QuantumWeavers.Components.Player {
                 _trigger1Activated = true;
                 
                 _shadow.SetActive(true);
-                _shadow.transform.DORotate(new Vector3(0, 0, -39f), 2f).SetDelay(0.7f).OnComplete(() =>
-                    { _shadow.transform.DORotate(new Vector3(0, 0, 0), 2f); });
-                SoundManager.Instance.Play("Scream3");
+                _shadow.transform.DORotate(new Vector3(0, 0, -39f), 2f).SetDelay(0.5f);
             }
             else if (other.gameObject.CompareTag("TriggerBathroom")) {
                 GameManager.Instance.LightsBlink(0.5f, 10);
@@ -128,26 +122,7 @@ namespace QuantumWeavers.Components.Player {
                     SoundManager.Instance.Play("Knock");
                 }
                 _onExit = !_onExit;
-            } else if (other.gameObject.CompareTag("TriggerDead")) {
-                SoundManager.Instance.Play("TensionMusicDark");
             }
-        }
-
-        private void OnTriggerStay(Collider other) {
-            if (!other.gameObject.CompareTag("TriggerDead")) return;
-            
-            _deltaDead -= Time.deltaTime;
-            if (_deltaDead > 0) return;
-            
-            // PLAY DEAD ANIMATION
-            Die();
-        }
-
-        private void OnTriggerExit(Collider other) {
-            if (!other.gameObject.CompareTag("TriggerDead")) return;
-            
-            _deltaDead = 10f;
-            SoundManager.Instance.Stop("TensionMusicDark");
         }
 
         #endregion
@@ -172,12 +147,6 @@ namespace QuantumWeavers.Components.Player {
             _gamepad?.SetMotorSpeeds(0.75f, 0.75f);
             yield return new WaitForSeconds(0.75f);
             _gamepad?.SetMotorSpeeds(0f, 0f);
-        }
-
-        private void Die() {
-            EyeAnimator.Play("Blink");
-            DefeatPanel.SetActive(true);
-            GameManager.Instance.SetGameStates(false);
         }
 
         #endregion

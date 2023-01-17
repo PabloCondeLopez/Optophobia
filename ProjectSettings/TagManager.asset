@@ -10,7 +10,6 @@ TagManager:
   - TriggerFirstEvent
   - TriggerBathroom
   - TriggerKnock
-  - TriggerDead
   layers:
   - Default
   - TransparentFX
