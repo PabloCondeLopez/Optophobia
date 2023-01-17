@@ -28,9 +28,9 @@ namespace QuantumWeavers.Components.Menus {
         [Tooltip("Range of FOV the player can select from.")]
         private readonly Vector2 _rangeOfFOV = new Vector2(80, 120);
 
-        [SerializeField] private CinemachineVirtualCamera camera;
+        [SerializeField] private CinemachineVirtualCamera Camera;
 
-        [SerializeField] private Animator animator;
+        [SerializeField] private Animator Animator;
 
         #endregion
 
@@ -72,8 +72,8 @@ namespace QuantumWeavers.Components.Menus {
         /// <param name="value"></param>
         public void OnFOVSlider(float value)
         {
-            camera.m_Lens.FieldOfView = Mathf.FloorToInt(_rangeOfFOV.x + (_rangeOfFOV.y-_rangeOfFOV.x) * value);
-            FOVText.text = camera.m_Lens.FieldOfView.ToString();
+            Camera.m_Lens.FieldOfView = Mathf.FloorToInt(_rangeOfFOV.x + (_rangeOfFOV.y-_rangeOfFOV.x) * value);
+            FOVText.text = Camera.m_Lens.FieldOfView.ToString();
         }
 
         public void OnExitButton()
@@ -89,13 +89,6 @@ namespace QuantumWeavers.Components.Menus {
             GameManager.Instance.SetGameStates(pause);
         }
 
-        public void onDead()
-        {
-            animator.Play("Blink");
-            //DOTween.To(() => EyesOpen.sprite, x => EyesOpen.sprite = x, EyesClosed, 1f).SetEase(Ease.InOutSine);
-        }
-
-       
 
         #endregion
 
