@@ -9,17 +9,17 @@ namespace QuantumWeavers.Components.Core {
         #region Singleton
         [Tooltip("Instance of GameManager, so it can be accessed from other classes.")]
         public static GameManager Instance;
-        
+
         /// <summary>
         /// Initializes Instance.
         /// </summary>
         private void Awake()
-        { 
+        {
             if (Instance != null) return;
 
             Instance = this;
             Input = GetComponent<InputHandler>();
-            
+
             DontDestroyOnLoad(this);
         }
 
@@ -40,6 +40,8 @@ namespace QuantumWeavers.Components.Core {
         private float _soundCount;
         private float _volumeChange = 1;
 
+        public bool _canCloseEyes = false;
+
         #endregion
 
         #region _privateVariables
@@ -58,7 +60,7 @@ namespace QuantumWeavers.Components.Core {
 
         private void Start()
         {
-            EyesOpen = true;
+            EyesOpen = false;
             //_state = GameStates.Playing;
             SceneManager.activeSceneChanged += OnSceneChanged;
         }
@@ -86,7 +88,9 @@ namespace QuantumWeavers.Components.Core {
                 _state = GameStates.Playing;
             }
 
-            if (Input.EyesHandler()) {
+            if (Input.EyesHandler() && _canCloseEyes)
+            {
+
                 EyesOpen = !EyesOpen;
                 _volumeChange = 1;
                 foreach (Classes.Sound.Sound s in SoundManager.Instance.ClosedEyesSounds)
@@ -96,7 +100,7 @@ namespace QuantumWeavers.Components.Core {
             }
 
             _soundCount -= 0.005f;
-            if (EyesOpen || !(_soundCount <= 0)) return;
+            if (EyesOpen || !(_soundCount <= 0) || !_canCloseEyes) return;
             
             _volumeChange += 0.2f;
             int r = Random.Range(0, SoundManager.Instance.ClosedEyesSounds.Length);
@@ -104,6 +108,8 @@ namespace QuantumWeavers.Components.Core {
             SoundManager.Instance.ClosedEyesSounds[r].Volume *= _volumeChange;
             SoundManager.Instance.Play(SoundManager.Instance.ClosedEyesSounds[r].ClipName);
             _soundCount = SoundManager.Instance.ClosedEyesSounds[r].AudioClip.length;
+
+
         }
 
         #endregion
@@ -135,6 +141,8 @@ namespace QuantumWeavers.Components.Core {
             SoundManager.Instance.Stop("FlickeringLights");
             StopCoroutine("LightsBlinkCoroutine");
         }
+
+        
         
         #endregion
     }

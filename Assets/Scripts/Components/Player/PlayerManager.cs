@@ -25,6 +25,10 @@ namespace QuantumWeavers.Components.Player {
         [Tooltip("Gamepad")] 
         private Gamepad _gamepad;
 
+        [SerializeField] private GameObject _tutorial;
+        [SerializeField] private GameObject _eyesClosed;
+        [SerializeField] private GameObject _eyesIndicator;
+
         private Quaternion _actualTarget = new Quaternion();
         private bool _searchingTarget = false;
         private bool _trigger1Activated = false;
@@ -73,7 +77,16 @@ namespace QuantumWeavers.Components.Player {
             _searchingTarget = false;
             _locomotion.SetIsFrozen(false);
             _camera.SetIsFrozen(false);
+
             _shadow.SetActive(false);
+            _tutorial.SetActive(true);
+
+            GameManager.Instance._canCloseEyes = true;
+            GameManager.Instance.EyesOpen = true;
+            GameManager.Instance.SetGameStates(false);
+            _eyesClosed.SetActive(true);
+            _eyesIndicator.SetActive(true);
+
         }
         
         /// <summary>

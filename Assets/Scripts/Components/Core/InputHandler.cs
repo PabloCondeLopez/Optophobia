@@ -12,6 +12,7 @@ namespace QuantumWeavers.Components.Core {
         [Tooltip("Movement vector.")]
         private Vector2 _movement;
 
+
         #endregion
 
         #region Initialization

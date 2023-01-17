@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using QuantumWeavers.Components.Player;
 using QuantumWeavers.Components.Sound;
 using Cinemachine;
+using QuantumWeavers.Components.Core;
+using DG.Tweening;
 
 namespace QuantumWeavers.Components.Menus {
     public class Pause : MonoBehaviour
@@ -26,6 +28,9 @@ namespace QuantumWeavers.Components.Menus {
         private readonly Vector2 _rangeOfFOV = new Vector2(80, 120);
 
         [SerializeField] private CinemachineVirtualCamera camera;
+
+        [SerializeField] private Image EyesOpen;
+        [SerializeField] private Image EyesClosed;
 
         #endregion
 
@@ -78,9 +83,29 @@ namespace QuantumWeavers.Components.Menus {
             SoundManager.Instance.Play("Button");
             SceneManager.LoadScene(0);
         }
-        
+
+        public void SetPause(bool pause)
+        {
+            GameManager.Instance.SetGameStates(pause);
+        }
+
+        public void onDead()
+        {
+            SetPause(false);
+            EyesOpen.GetComponent<CanvasGroup>().DOFade(1, 0f);
+            EyesClosed.GetComponent<CanvasGroup>().DOFade(0, 1f);
+            Invoke("ChangeImage", 0.1f);
+        }
+
+        private void ChangeImage()
+        {
+            EyesOpen.GetComponent<CanvasGroup>().DOFade(0, 1f);
+            EyesClosed.GetComponent<CanvasGroup>().DOFade(1, 0f);
+            Invoke("onDead", 0.1f);
+        }
+
         #endregion
-        
+
 
     }
 }

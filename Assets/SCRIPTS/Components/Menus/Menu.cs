@@ -17,7 +17,7 @@ namespace QuantumWeavers.Components.Menus {
         /// </summary>
         public void OnStartButton()
         {
-            GameManager.Instance.EyesOpen = true;
+            GameManager.Instance.EyesOpen = false;
             GameManager.Instance.SetGameStates(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             PlayButton();
