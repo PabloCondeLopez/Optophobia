@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   Name: Key
-  AttachmentPosition: {x: 0.334, y: -0.215, z: 0.306}
-  AttachmentRotation: {x: 90, y: -90, z: 0}
+  AttachmentPosition: {x: 0.755, y: 0.302, z: 0.005}
+  AttachmentRotation: {x: 0, y: 0, z: 0}

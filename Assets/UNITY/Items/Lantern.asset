@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Lantern
   m_EditorClassIdentifier: 
   Name: Lantern
-  AttachmentPosition: {x: 0.345, y: 0, z: -0.175}
+  AttachmentPosition: {x: 0.535, y: 0.236, z: 0.083}
   AttachmentRotation: {x: 0, y: -90, z: 0}

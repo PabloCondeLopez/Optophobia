@@ -26,7 +26,8 @@ namespace QuantumWeavers.Components.Items {
 
 		public override void UseObject(ObjectDoor interactableObject) {
 			_turnOn = !_turnOn;
-			
+			GameManager.Instance.OnLanternUse();
+
 			_lanternLight.intensity = _turnOn ? 2 : 0;
 		}
 	}

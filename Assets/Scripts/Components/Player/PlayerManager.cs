@@ -34,7 +34,8 @@ namespace QuantumWeavers.Components.Player {
         [SerializeField] private Animator EyesAnimator;
         [SerializeField] private Animator DeadAnimator;
 
-        private float _deltaDead = 15f;
+        private float _deltaDead = 9.2f;
+        private bool _deadMusicFlag = false;
 
         private Quaternion _actualTarget = new Quaternion();
         private bool _searchingTarget = false;
@@ -116,9 +117,10 @@ namespace QuantumWeavers.Components.Player {
                 _trigger1Activated = true;
                 
                 _shadow.SetActive(true);
-                _shadow.transform.DORotate(new Vector3(0, 0, -39f), 2f).SetDelay(0.5f).OnComplete(() => {
+                _shadow.transform.DORotate(new Vector3(0, 0, -39f), 1.5f).SetDelay(0.5f).OnComplete(() => {
                     _shadow.transform.DORotate(new Vector3(0, 0, 0), 2f);
                 });
+                SoundManager.Instance.Play("Scream3");
             }
             else if (other.gameObject.CompareTag("TriggerBathroom")) {
                 GameManager.Instance.LightsBlink(0.5f, 10);
@@ -131,22 +133,45 @@ namespace QuantumWeavers.Components.Player {
                 _onExit = !_onExit;
             } else if (other.gameObject.CompareTag("TriggerDead")) {
                 SoundManager.Instance.Play("TensionMusicDark");
+                _deadMusicFlag = true;
             }
         }
 
         private void OnTriggerStay(Collider other) {
             if (!other.gameObject.CompareTag("TriggerDead")) return;
-
-            _deltaDead -= Time.deltaTime;
-
-            if (_deltaDead > 0) return;
             
-            DeadAnimator.gameObject.SetActive(true);
-            DeadAnimator.Play("ManoIzq");
+            if (GameManager.Instance.IsLanternOn()) {
+                SoundManager.Instance.Stop("TensionMusicDark");
+                _deadMusicFlag = false;
+                _deltaDead = 9.2f;
+            }
+            else if (!GameManager.Instance.IsLanternOn()) {
+                if (!_deadMusicFlag) {
+                    SoundManager.Instance.Play("TensionMusicDark");
+                    _deadMusicFlag = true;
+                }
+                
+                _deltaDead -= Time.deltaTime;
 
-            DeadPanel.SetActive(true);
-            EyesAnimator.Play("Blink");
-            GameManager.Instance.SetGameStates(false);
+                if (_deltaDead > 0) return;
+            
+                DeadPanel.SetActive(true);
+                EyesAnimator.Play("Blink");
+                GameManager.Instance.SetGameStates(false);
+            }
+        }
+
+        private void OnTriggerExit(Collider other) {
+            if (other.gameObject.CompareTag("TriggerBathroom")) {
+                SoundManager.Instance.Stop("FlickeringLights");
+                return;
+            }
+            
+            if (!other.gameObject.CompareTag("TriggerDead")) return;
+            
+            SoundManager.Instance.Stop("TensionMusicDark");
+            _deadMusicFlag = false;
+            _deltaDead = 9.2f;
         }
 
         #endregion

@@ -299,7 +299,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &175918857837611398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888330ef69e746c44bf54be8ca71e5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCamera: {fileID: 0}
-  HUDText: {fileID: 9044330454682657105}
-  MovementType: 34
-  Speed: 1
-  JumpHeight: 0.35
+  _playerCamera: {fileID: 0}
+  _HUDText: {fileID: 0}
+  _movementType: 0
+  _speed: 2
+  _jumpHeight: 0

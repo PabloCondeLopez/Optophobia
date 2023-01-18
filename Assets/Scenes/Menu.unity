@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1164,6 +1164,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1645410226}
+        m_TargetAssemblyTypeName: QuantumWeavers.Components.Menus.Menu, Project.Components.Menus
+        m_MethodName: PlayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &112286672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,6 +1632,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1671268069}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1645410226}
+        m_TargetAssemblyTypeName: QuantumWeavers.Components.Menus.Menu, Project.Components.Menus
+        m_MethodName: PlayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4147,7 +4171,7 @@ MonoBehaviour:
   - ClipName: TensionMusicDark
     AudioType: 1
     AudioClip: {fileID: 8300000, guid: 4ac75b17bc9524b4ea50403ca40a110b, type: 3}
-    IsLoop: 1
+    IsLoop: 0
     PlayOnAwake: 0
     Volume: 0.5
     Source: {fileID: 0}
@@ -6813,6 +6837,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1645410226}
         m_TargetAssemblyTypeName: QuantumWeavers.UI.Menu, Project.UI
         m_MethodName: OnExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1645410226}
+        m_TargetAssemblyTypeName: QuantumWeavers.Components.Menus.Menu, Project.Components.Menus
+        m_MethodName: PlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

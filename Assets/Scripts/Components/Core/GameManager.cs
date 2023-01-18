@@ -43,6 +43,7 @@ namespace QuantumWeavers.Components.Core {
         private Transform _currentCheckpoint;
 
         public bool _canCloseEyes = false;
+        private bool _lanternOn = false;
 
         #endregion
 
@@ -62,6 +63,14 @@ namespace QuantumWeavers.Components.Core {
             Transform playerPosition = GameObject.FindWithTag("Player").transform;
              playerPosition.position = _currentCheckpoint.position;
              playerPosition.rotation = _currentCheckpoint.rotation;
+        }
+
+        public void OnLanternUse() {
+            _lanternOn = !_lanternOn;
+        }
+
+        public bool IsLanternOn() {
+            return _lanternOn;
         }
 
         #endregion
@@ -145,7 +154,7 @@ namespace QuantumWeavers.Components.Core {
             while(_coroutineCounter.x <= _coroutineCounter.y)
             {
                 _coroutineCounter.x++;
-                IlluminationController[0].gameObject.SetActive(!IlluminationController[0].gameObject.activeSelf);
+                IlluminationController[9].gameObject.SetActive(!IlluminationController[9].gameObject.activeSelf);
                 yield return new WaitForSeconds(count);
             }
             SoundManager.Instance.Stop("FlickeringLights");

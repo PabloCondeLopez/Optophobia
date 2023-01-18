@@ -118,16 +118,17 @@ namespace QuantumWeavers.Components.Items {
                 }
 
                 if (_gameManager.Input.OnInteract()) {
-                    if(_itemOnHand && interactable is ObjectDoor objectDoor)
-                        _itemOnHand.UseObject(objectDoor);
-                    else if (interactable is Door door) {
+                    if(_itemOnHand && interactable.GetType() == typeof(ObjectDoor))
+                        _itemOnHand.UseObject(hit.collider.GetComponentInParent<ObjectDoor>());
+                    else if (interactable is Door door && 
+                             (interactable.GetType() != typeof(ObjectDoor) && interactable.GetType() != typeof(ButtonDoor))) {
                         door.OpenDoor();
                     }
                 }
             }
 
-            if (!hit.collider || !_previousInteractableCollider) return;
-            if (hit.collider.GetComponentInParent<Interactable>() is ButtonDoor) return;
+            if (hit.collider || !_previousInteractableCollider) return;
+            //if (hit.collider.GetComponentInParent<Interactable>() is ButtonDoor) return;
             
             Interactable previousInteractable = _previousInteractableCollider.GetComponentInParent<Interactable>();
                 

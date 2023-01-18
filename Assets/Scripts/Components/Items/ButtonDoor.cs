@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using QuantumWeavers.Components.Sound;
 namespace QuantumWeavers.Components.Items {
